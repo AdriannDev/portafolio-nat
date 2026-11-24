@@ -7,6 +7,7 @@ import {
   Bookmark,
   Film,
   Globe,
+  GraduationCap,
   Heart,
   Images,
   Instagram,
@@ -20,15 +21,13 @@ interface CaseStudyViewProps {
   nextProject: Project;
   onBack: () => void;
   onSelectProject: (project: Project) => void;
-  onCursorLabel: (label: string | null) => void;
 }
 
 export function CaseStudyView({
   project,
   nextProject,
   onBack,
-  onSelectProject,
-  onCursorLabel
+  onSelectProject
 }: CaseStudyViewProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -108,9 +107,18 @@ export function CaseStudyView({
 
         {/* Editorial Hero Header */}
         <header className="mt-10 sm:mt-14">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#141414]/12 px-3.5 py-1 text-xs font-medium text-[#4E4A44]">
-            {project.category}
-          </span>
+          {project.isAcademic && (
+            <p className="mb-3 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#6B6760]">
+              <GraduationCap className="h-3.5 w-3.5 text-[#141414]/80" />
+              <span>{project.academicLabel ?? 'Proyecto Universitario · ISIL'}</span>
+            </p>
+          )}
+
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#141414]/12 px-3.5 py-1 text-xs font-medium text-[#4E4A44]">
+              {project.category}
+            </span>
+          </div>
 
           <h1 className="mt-5 text-4xl sm:text-6xl lg:text-[72px] font-medium tracking-[-0.035em] leading-[1.02] text-[#141414]">
             {project.title}
@@ -544,11 +552,9 @@ export function CaseStudyView({
 
           <button
             onClick={() => {
-              onCursorLabel(null);
               onSelectProject(nextProject);
             }}
-            onMouseEnter={() => onCursorLabel('Siguiente caso ↗')}
-            onMouseLeave={() => onCursorLabel(null)}
+            data-cursor-label="Siguiente caso ↗"
             className="group mt-5 flex w-full flex-col sm:flex-row items-start sm:items-center justify-between gap-6 rounded-[26px] border border-[#141414]/12 bg-[#ECE9E1]/50 p-5 sm:p-7 text-left transition-all duration-300 hover:border-[#141414]/30 hover:bg-[#ECE9E1] cursor-pointer"
           >
             <div className="flex items-center gap-5 sm:gap-7">
@@ -560,8 +566,15 @@ export function CaseStudyView({
                 />
               </div>
               <div>
-                <span className="font-mono text-xs text-[#6B6760]">
-                  {nextProject.index} · {nextProject.category}
+                <span className="inline-flex flex-wrap items-center gap-1.5 font-mono text-xs text-[#6B6760]">
+                  <span>
+                    {nextProject.index} · {nextProject.category}
+                  </span>
+                  {nextProject.isAcademic && (
+                    <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.12em] text-[#4E4A44]">
+                      · <GraduationCap className="h-3 w-3" /> Universitario
+                    </span>
+                  )}
                 </span>
                 <h3 className="mt-1 text-2xl sm:text-4xl font-medium tracking-[-0.025em] text-[#141414]">
                   {nextProject.title}

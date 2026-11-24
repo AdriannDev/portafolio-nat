@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUpRight, LayoutGrid } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, GraduationCap, LayoutGrid } from 'lucide-react';
 import { PROFILE, type Project } from '../data/portfolio';
 
 interface HorizontalGalleryProps {
@@ -9,7 +9,6 @@ interface HorizontalGalleryProps {
   onActiveIndexChange: (index: number) => void;
   onSelectProject: (project: Project) => void;
   onSwitchToIndex: () => void;
-  onCursorLabel: (label: string | null) => void;
 }
 
 export function HorizontalGallery({
@@ -17,8 +16,7 @@ export function HorizontalGallery({
   activeIndex,
   onActiveIndexChange,
   onSelectProject,
-  onSwitchToIndex,
-  onCursorLabel
+  onSwitchToIndex
 }: HorizontalGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const wheelAccumulator = useRef(0);
@@ -134,7 +132,6 @@ export function HorizontalGallery({
       onPointerCancel={handlePointerUp}
       onPointerLeave={() => {
         if (isDragging) handlePointerUp();
-        onCursorLabel(null);
       }}
       className="relative flex min-h-dvh w-full flex-col justify-between overflow-hidden pt-20 pb-6 sm:pt-24 sm:pb-8 select-none editorial-grain"
     >
@@ -211,16 +208,12 @@ export function HorizontalGallery({
                 onClick={() => {
                   if (Math.abs(dragOffset) > 12) return;
                   if (isActive) {
-                    onCursorLabel(null);
                     onSelectProject(project);
                   } else {
                     goToIndex(idx);
                   }
                 }}
-                onMouseEnter={() => {
-                  onCursorLabel(isActive ? 'Explorar caso ↗' : `Ver ${project.index}`);
-                }}
-                onMouseLeave={() => onCursorLabel(null)}
+                data-cursor-label={isActive ? 'Explorar caso ↗' : `Ver ${project.index}`}
                 className={`group absolute w-[86vw] sm:w-[70vw] md:w-[60vw] lg:w-[54vw] max-w-[820px] aspect-[16/10] rounded-[20px] sm:rounded-[26px] overflow-hidden border transition-shadow duration-500 ${
                   isActive
                     ? 'cursor-pointer border-[#141414]/12 shadow-[0_30px_80px_-24px_rgba(20,20,20,0.22)]'
@@ -245,15 +238,24 @@ export function HorizontalGallery({
 
                 {/* Top pill tags inside card */}
                 <div className="absolute top-4 left-4 right-4 sm:top-5 sm:left-5 sm:right-5 flex items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-[#F5F3EE]/90 px-3 py-1 text-[11px] font-medium text-[#141414] backdrop-blur-md">
-                    <span
-                      className="h-2 w-2 rounded-full"
-                      style={{ backgroundColor: project.accentColor }}
-                    />
-                    {project.category}
-                  </span>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-[#F5F3EE]/90 px-3 py-1 text-[11px] font-medium text-[#141414] backdrop-blur-md">
+                      <span
+                        className="h-2 w-2 rounded-full"
+                        style={{ backgroundColor: project.accentColor }}
+                      />
+                      {project.category}
+                    </span>
 
-                  <span className="rounded-full bg-[#141414]/55 px-2.5 py-1 font-mono text-[10px] text-[#F5F3EE] backdrop-blur-md">
+                    {project.isAcademic && (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-[#141414]/65 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-[#F5F3EE] backdrop-blur-md">
+                        <GraduationCap className="h-3 w-3" />
+                        Universitario
+                      </span>
+                    )}
+                  </div>
+
+                  <span className="shrink-0 rounded-full bg-[#141414]/55 px-2.5 py-1 font-mono text-[10px] text-[#F5F3EE] backdrop-blur-md">
                     {project.year}
                   </span>
                 </div>
@@ -282,7 +284,7 @@ export function HorizontalGallery({
 
         {/* Active Project Kinetic Title + Controls */}
         <div className="mt-5 sm:mt-7 mx-auto flex w-full max-w-[1440px] flex-col sm:flex-row items-start sm:items-end justify-between gap-4 px-5 sm:px-8 lg:px-12">
-          <div className="min-h-[74px] sm:min-h-[84px]">
+          <div className="min-h-[82px] sm:min-h-[92px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeProject.id}
@@ -291,6 +293,12 @@ export function HorizontalGallery({
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
               >
+                {activeProject.isAcademic && (
+                  <p className="mb-1.5 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[#6B6760]">
+                    <GraduationCap className="h-3.5 w-3.5 text-[#141414]/70" />
+                    <span>{activeProject.academicLabel ?? 'Proyecto Universitario · ISIL'}</span>
+                  </p>
+                )}
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <span className="font-mono text-xs text-[#6B6760]">
                     {activeProject.index}

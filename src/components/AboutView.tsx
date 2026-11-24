@@ -12,6 +12,7 @@ import {
   Wrench
 } from 'lucide-react';
 import { PROFILE, PROJECTS } from '../data/portfolio';
+import { ToolLogo } from './ToolLogo';
 
 interface AboutViewProps {
   onNavigateWork: () => void;
@@ -319,9 +320,19 @@ export function AboutView({ onNavigateWork }: AboutViewProps) {
                 </h3>
                 <ul className="mt-5 space-y-4">
                   {group.tools.map((tool) => (
-                    <li key={tool.name} className="border-t border-[#141414]/8 pt-3 first:border-0 first:pt-0">
-                      <p className="text-sm font-medium text-[#141414]">{tool.name}</p>
-                      <p className="mt-0.5 text-xs text-[#6B6760]">{tool.focus}</p>
+                    <li
+                      key={tool.name}
+                      className="flex items-start gap-3 border-t border-[#141414]/8 pt-3.5 first:border-0 first:pt-0"
+                    >
+                      <ToolLogo iconKey={tool.iconKey} name={tool.name} />
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium leading-snug text-[#141414]">
+                          {tool.name}
+                        </p>
+                        <p className="mt-0.5 text-xs leading-relaxed text-[#6B6760]">
+                          {tool.focus}
+                        </p>
+                      </div>
                     </li>
                   ))}
                 </ul>

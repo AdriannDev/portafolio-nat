@@ -32,12 +32,10 @@ export default function App() {
   const [routeState, setRouteState] = useState<RouteState>(() => parseHash());
   const [workViewMode, setWorkViewMode] = useState<WorkViewMode>('gallery');
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
-  const [cursorLabel, setCursorLabel] = useState<string | null>(null);
 
   // Sync with browser hash navigation (Back / Forward)
   useEffect(() => {
     const onHashChange = () => {
-      setCursorLabel(null);
       setRouteState(parseHash());
     };
     window.addEventListener('hashchange', onHashChange);
@@ -45,19 +43,16 @@ export default function App() {
   }, []);
 
   const navigateWork = useCallback(() => {
-    setCursorLabel(null);
     window.location.hash = '/';
     setRouteState({ route: 'work', projectSlug: null });
   }, []);
 
   const navigateAbout = useCallback(() => {
-    setCursorLabel(null);
     window.location.hash = '/sobre-mi';
     setRouteState({ route: 'about', projectSlug: null });
   }, []);
 
   const navigateProject = useCallback((project: Project) => {
-    setCursorLabel(null);
     const idx = PROJECTS.findIndex((p) => p.id === project.id);
     if (idx !== -1) setActiveGalleryIndex(idx);
     window.location.hash = `/proyecto/${project.slug}`;
@@ -75,9 +70,14 @@ export default function App() {
     return PROJECTS[(currentIdx + 1) % PROJECTS.length];
   }, [activeProject]);
 
+  const cursorResetKey = `${routeState.route}-${routeState.projectSlug ?? ''}-${workViewMode}`;
+
   return (
     <div className="min-h-dvh bg-[#F5F3EE] text-[#141414]">
-      <CustomCursor label={cursorLabel} />
+      <CustomCursor
+        resetKey={cursorResetKey}
+        disabled={routeState.route === 'about'}
+      />
 
       <Header
         activeRoute={routeState.route}
@@ -98,7 +98,6 @@ export default function App() {
               onActiveIndexChange={setActiveGalleryIndex}
               onSelectProject={navigateProject}
               onSwitchToIndex={() => setWorkViewMode('index')}
-              onCursorLabel={setCursorLabel}
             />
           )}
 
@@ -108,7 +107,6 @@ export default function App() {
               projects={PROJECTS}
               onSelectProject={navigateProject}
               onSwitchToGallery={() => setWorkViewMode('gallery')}
-              onCursorLabel={setCursorLabel}
             />
           )}
 
@@ -119,7 +117,6 @@ export default function App() {
               nextProject={nextProject}
               onBack={navigateWork}
               onSelectProject={navigateProject}
-              onCursorLabel={setCursorLabel}
             />
           )}
 

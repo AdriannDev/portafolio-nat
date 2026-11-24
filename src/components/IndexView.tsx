@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Rows3 } from 'lucide-react';
+import { ArrowUpRight, GraduationCap, Rows3 } from 'lucide-react';
 import { type Project, type ProjectCategory } from '../data/portfolio';
 
 interface IndexViewProps {
   projects: Project[];
   onSelectProject: (project: Project) => void;
   onSwitchToGallery: () => void;
-  onCursorLabel: (label: string | null) => void;
 }
 
 const CATEGORIES: ('Todos' | ProjectCategory)[] = [
@@ -22,8 +21,7 @@ const CATEGORIES: ('Todos' | ProjectCategory)[] = [
 export function IndexView({
   projects,
   onSelectProject,
-  onSwitchToGallery,
-  onCursorLabel
+  onSwitchToGallery
 }: IndexViewProps) {
   const [selectedCategory, setSelectedCategory] = useState<'Todos' | ProjectCategory>('Todos');
 
@@ -91,11 +89,9 @@ export function IndexView({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: idx * 0.06, ease: [0.22, 1, 0.36, 1] }}
               onClick={() => {
-                onCursorLabel(null);
                 onSelectProject(project);
               }}
-              onMouseEnter={() => onCursorLabel('Abrir caso ↗')}
-              onMouseLeave={() => onCursorLabel(null)}
+              data-cursor-label="Abrir caso ↗"
               className="group cursor-pointer"
             >
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[22px] border border-[#141414]/10 bg-[#ECE9E1]">
@@ -104,7 +100,7 @@ export function IndexView({
                   alt={project.title}
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 />
-                <div className="absolute top-4 left-4 flex items-center gap-2">
+                <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#F5F3EE]/92 px-3 py-1 text-[11px] font-medium text-[#141414] backdrop-blur-md">
                     <span
                       className="h-2 w-2 rounded-full"
@@ -120,6 +116,12 @@ export function IndexView({
 
               <div className="mt-4 flex items-start justify-between gap-4">
                 <div>
+                  {project.isAcademic && (
+                    <p className="mb-1 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[#6B6760]">
+                      <GraduationCap className="h-3 w-3 text-[#141414]/70" />
+                      <span>{project.academicLabel ?? 'Proyecto Universitario · ISIL'}</span>
+                    </p>
+                  )}
                   <div className="flex items-baseline gap-2.5">
                     <span className="font-mono text-xs text-[#6B6760]">{project.index}</span>
                     <h2 className="text-2xl font-medium tracking-[-0.02em] text-[#141414] group-hover:opacity-75 transition-opacity">

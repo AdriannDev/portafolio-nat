@@ -28,21 +28,15 @@ export function Header({
         {/* Brand Identity */}
         <button
           onClick={onNavigateWork}
-          className="group flex items-center gap-3 text-left focus:outline-none cursor-pointer"
+          className="group flex flex-col leading-tight text-left focus:outline-none cursor-pointer"
           aria-label="Ir al inicio del portafolio"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#141414]/15 bg-[#F5F3EE]/80 backdrop-blur-md font-mono text-[11px] font-medium tracking-tight text-[#141414] transition-transform duration-300 group-hover:scale-105">
-            {PROFILE.monogram}
+          <span className="text-[14px] sm:text-[15px] font-medium tracking-[-0.02em] text-[#141414] transition-opacity group-hover:opacity-75">
+            {PROFILE.fullName}
           </span>
-          <div className="flex flex-col leading-tight">
-            <span className="text-[13px] sm:text-sm font-medium tracking-[-0.015em] text-[#141414]">
-              {PROFILE.fullName}
-            </span>
-            <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] text-[#6B6760]">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse" />
-              Publicidad &amp; Medios Digitales
-            </span>
-          </div>
+          <span className="text-[10px] sm:text-[11px] font-normal tracking-[0.01em] text-[#6B6760]">
+            Publicista &amp; Medios Digitales
+          </span>
         </button>
 
         {/* Center Mode Switch (Only on Home Work View) */}

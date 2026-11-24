@@ -1,3 +1,5 @@
+import type { ToolIconKey } from '../components/ToolLogo';
+
 export type ProjectCategory =
   | 'Social Media'
   | 'Activación BTL'
@@ -65,6 +67,9 @@ export interface Project {
   subtitle: string;
   client: string;
   category: ProjectCategory;
+  /** Marks academic university projects so they display an eyebrow badge */
+  isAcademic: boolean;
+  academicLabel?: string;
   year: string;
   duration: string;
   role: string;
@@ -105,7 +110,7 @@ export interface TimelineItem {
 
 export interface ToolCategory {
   category: string;
-  tools: { name: string; focus: string }[];
+  tools: { name: string; focus: string; iconKey?: ToolIconKey }[];
 }
 
 export interface SocialLink {
@@ -218,37 +223,37 @@ export const PROFILE: ProfileData = {
     {
       category: 'Diseño & Dirección Visual',
       tools: [
-        { name: 'Adobe Photoshop', focus: 'Fotomontajes, piezas clave y retoque' },
-        { name: 'Adobe Illustrator', focus: 'Key visuals, gráficos de campaña y vectores' },
-        { name: 'Canva Pro', focus: 'Presentaciones creativas, decks y parrillas ágiles' },
-        { name: 'Wix Studio / Editor', focus: 'Maquetación de sitios web y presencia digital' }
+        { name: 'Adobe Photoshop', focus: 'Fotomontajes, piezas clave y retoque', iconKey: 'photoshop' },
+        { name: 'Adobe Illustrator', focus: 'Key visuals, gráficos de campaña y vectores', iconKey: 'illustrator' },
+        { name: 'Canva Pro', focus: 'Presentaciones creativas, decks y parrillas ágiles', iconKey: 'canva' },
+        { name: 'Wix Studio / Editor', focus: 'Maquetación de sitios web y presencia digital', iconKey: 'wix' }
       ]
     },
     {
       category: 'Video, Reels & Contenido',
       tools: [
-        { name: 'CapCut', focus: 'Edición ágil nativa para TikTok e Instagram Reels' },
-        { name: 'Producción Móvil', focus: 'Grabación en tienda, unboxing y cobertura BTL' },
-        { name: 'Guion & Storyboard', focus: 'Estructuras narrativas para spots y video corto' },
-        { name: 'Lightroom', focus: 'Ajuste de color y estética visual para feeds' }
+        { name: 'CapCut', focus: 'Edición ágil nativa para TikTok e Instagram Reels', iconKey: 'capcut' },
+        { name: 'Producción Móvil', focus: 'Grabación en tienda, unboxing y cobertura BTL', iconKey: 'mobile-production' },
+        { name: 'Guion & Storyboard', focus: 'Estructuras narrativas para spots y video corto', iconKey: 'storyboard' },
+        { name: 'Lightroom', focus: 'Ajuste de color y estética visual para feeds', iconKey: 'lightroom' }
       ]
     },
     {
       category: 'Redes Sociales & Gestión',
       tools: [
-        { name: 'Instagram & TikTok', focus: 'Gestión de comunidad, Reels, Stories y Lives' },
-        { name: 'Calendario Editorial', focus: 'Planificación mensual por horarios y objetivos' },
-        { name: 'Meta Business Suite', focus: 'Programación y seguimiento de publicaciones' },
-        { name: 'TikTok Creative Center', focus: 'Búsqueda de trends, hooks y formatos nativos' }
+        { name: 'Instagram & TikTok', focus: 'Gestión de comunidad, Reels, Stories y Lives', iconKey: 'instagram-tiktok' },
+        { name: 'Calendario Editorial', focus: 'Planificación mensual por horarios y objetivos', iconKey: 'editorial-calendar' },
+        { name: 'Meta Business Suite', focus: 'Programación y seguimiento de publicaciones', iconKey: 'meta' },
+        { name: 'TikTok Creative Center', focus: 'Búsqueda de trends, hooks y formatos nativos', iconKey: 'tiktok' }
       ]
     },
     {
       category: 'Estrategia Publicitaria',
       tools: [
-        { name: 'Exploración de Insights', focus: 'Investigación de público y propuesta de valor' },
-        { name: 'Activaciones BTL', focus: 'Diseño de mecánicas, montaje y rebote digital' },
-        { name: 'Co-Branding & 360°', focus: 'Alianzas de marca, trade marketing y promos' },
-        { name: 'Copywriting', focus: 'Titulares, conceptos paraguas y guiones creativos' }
+        { name: 'Exploración de Insights', focus: 'Investigación de público y propuesta de valor', iconKey: 'insights' },
+        { name: 'Activaciones BTL', focus: 'Diseño de mecánicas, montaje y rebote digital', iconKey: 'btl' },
+        { name: 'Co-Branding & 360°', focus: 'Alianzas de marca, trade marketing y promos', iconKey: 'cobranding' },
+        { name: 'Copywriting', focus: 'Titulares, conceptos paraguas y guiones creativos', iconKey: 'copywriting' }
       ]
     }
   ],
@@ -280,6 +285,7 @@ export const PROJECTS: Project[] = [
     subtitle: 'Gestión creativa de Instagram y TikTok para moda femenina en Lima',
     client: 'Kushi Illari Boutique (Av. Ignacio Merino 2069, Lince)',
     category: 'Social Media',
+    isAcademic: false,
     year: '2025 — 2026',
     duration: 'Experiencia Laboral · Gestión Continua',
     role: 'Content Creator & Social Media Manager',
@@ -422,6 +428,8 @@ export const PROJECTS: Project[] = [
     subtitle: 'Activación BTL real en campus universitario para aliviar el estrés de exámenes',
     client: 'Sprite · Proyecto Aplicado (Causa Creativa · ISIL)',
     category: 'Activación BTL',
+    isAcademic: true,
+    academicLabel: 'Proyecto Universitario · ISIL',
     year: '2025',
     duration: 'Conceptualización & Ejecución Presencial',
     role: 'Encargada de Montaje & Conceptualización Creativa',
@@ -548,6 +556,8 @@ export const PROJECTS: Project[] = [
     subtitle: 'Propuesta de co-branding por Fiestas Patrias bajo el concepto “De Pecho Sabor Criollo”',
     client: 'Don Belisario × Inca Kola (Agencia Graphs · ISIL)',
     category: 'Branding & Campaña',
+    isAcademic: true,
+    academicLabel: 'Proyecto Universitario · ISIL',
     year: '2025',
     duration: 'Campaña de Fiestas Patrias (15 – 31 de julio)',
     role: 'Estrategia de Co-Branding, BTL & Desarrollo de Piezas',
@@ -674,6 +684,8 @@ export const PROJECTS: Project[] = [
     subtitle: 'Campaña publicitaria 360° “Extra Life: Para momentos que duran más”',
     client: 'Purina Dog Chow · Fundamentos y Casuística Publicitaria (ISIL)',
     category: 'Campaña 360°',
+    isAcademic: true,
+    academicLabel: 'Proyecto Universitario · ISIL',
     year: '2024 — 2025',
     duration: 'Campaña Integral 360° · Parcial Académico',
     role: 'Estrategia Creativa, Storyboard, BTL & Promociones',
@@ -800,6 +812,8 @@ export const PROJECTS: Project[] = [
     subtitle: 'Propuesta de activación BTL en playas “Verano Shield” para protección solar SPF 100',
     client: 'Yanbal — Línea Total Block (Agencia Graphs · ISIL)',
     category: 'Activación BTL',
+    isAcademic: true,
+    academicLabel: 'Proyecto Universitario · ISIL',
     year: '2025',
     duration: 'Campaña de Temporada de Verano · BTL Playas',
     role: 'Conceptualización BTL, Estrategia & Desarrollo Web (Agencia Graphs)',
@@ -926,6 +940,8 @@ export const PROJECTS: Project[] = [
     subtitle: 'Diseño de presencia web y arquitectura de contenidos para servicios tecnológicos',
     client: 'Punto Laptop · Proyecto de Medios Digitales (ISIL)',
     category: 'Web & Digital',
+    isAcademic: true,
+    academicLabel: 'Proyecto Universitario · ISIL',
     year: '2025',
     duration: 'Proyecto de Medios Digitales · Desarrollo en Wix',
     role: 'Arquitectura Web & Contenidos (Secciones Nosotros & Pie de Página)',
@@ -997,6 +1013,18 @@ export const PROJECTS: Project[] = [
         }
       ]
     },
+    galleryImages: [
+      {
+        src: '/images/projects/puntolaptop-web-servicios.jpg',
+        title: 'Sección Servicios — Sitio Web Punto Laptop',
+        caption: 'Captura de la vista de servicios publicada en Wix presentando el catálogo y la propuesta de valor.'
+      },
+      {
+        src: '/images/projects/puntolaptop-web-contacto.jpg',
+        title: 'Sección Contacto — Conversión Directa',
+        caption: 'Captura de la página de contacto en vivo con dirección, canales de atención y formulario.'
+      }
+    ],
     metrics: [
       {
         value: '7',
@@ -1027,6 +1055,6 @@ export const PROJECTS: Project[] = [
       }
     ],
     galleryCaption:
-      'Distribución de módulos y arquitectura del sitio web Punto Laptop desarrollado colaborativamente en Wix.'
+      'Captura real de la sección "Nosotros" en el sitio web Punto Laptop publicado en Wix.'
   }
 ];
