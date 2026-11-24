@@ -175,7 +175,7 @@ export function HorizontalGallery({
           <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-[#6B6760]">
             <span className="text-[#141414] font-medium">{activeProject.index}</span>
             <span className="h-px w-6 bg-[#141414]/25" />
-            <span>0{projects.length}</span>
+            <span>{String(projects.length).padStart(2, '0')}</span>
           </div>
         </div>
       </div>

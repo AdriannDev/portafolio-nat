@@ -104,7 +104,7 @@ export function Header({
           >
             <span>Proyectos</span>
             <sup className="ml-1 font-mono text-[9px] text-[#6B6760]">
-              0{projectCount}
+              {String(projectCount).padStart(2, '0')}
             </sup>
             {activeRoute !== 'about' && (
               <motion.span

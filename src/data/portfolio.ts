@@ -1,4 +1,9 @@
-export type ProjectCategory = 'Social Media' | 'Branding & Campaña' | 'Campaña 360°';
+export type ProjectCategory =
+  | 'Social Media'
+  | 'Activación BTL'
+  | 'Branding & Campaña'
+  | 'Campaña 360°'
+  | 'Web & Digital';
 
 export interface ProjectMetric {
   value: string;
@@ -31,6 +36,27 @@ export interface CampaignBoardItem {
   accentBg?: string;
 }
 
+export interface VideoReelItem {
+  title: string;
+  tag: string;
+  format: string;
+  description: string;
+  src: string;
+  poster: string;
+}
+
+export interface GalleryImageItem {
+  src: string;
+  title: string;
+  caption: string;
+}
+
+export interface ProjectExternalLink {
+  label: string;
+  url: string;
+  platform?: 'instagram' | 'tiktok' | 'web';
+}
+
 export interface Project {
   id: string;
   index: string;
@@ -56,12 +82,15 @@ export interface Project {
   metrics: ProjectMetric[];
   /** Specialized interactive showcase data per project type */
   socialShowcase?: SocialPostMockup[];
+  videoReels?: VideoReelItem[];
   campaignBoard?: {
     sectionLabel: string;
     sectionTitle: string;
     description: string;
     items: CampaignBoardItem[];
   };
+  galleryImages?: GalleryImageItem[];
+  externalLinks?: ProjectExternalLink[];
   galleryCaption: string;
 }
 
@@ -107,557 +136,897 @@ export interface ProfileData {
 
 /**
  * ============================================================================
- * DATOS CENTRALIZADOS DEL PORTAFOLIO
- * Edita este único archivo para actualizar textos, proyectos, experiencia,
- * herramientas, redes sociales e imágenes cuando tengas tus datos definitivos.
+ * DATOS CENTRALIZADOS DEL PORTAFOLIO — NATALY MARCHAN
+ * Edita este archivo para actualizar correo personal, redes personales o
+ * foto de retrato cuando desees personalizar aún más tu perfil.
  * ============================================================================
  */
 export const PROFILE: ProfileData = {
-  firstName: 'Natalia',
-  fullName: 'Natalia Vargas',
-  monogram: 'N.V',
-  roleTitle: 'Estudiante de Publicidad & Medios Digitales',
+  firstName: 'Nataly',
+  fullName: 'Nataly Marchan',
+  monogram: 'N.M',
+  roleTitle: 'Estudiante de Publicidad & Medios Digitales · ISIL',
   location: 'Lima, Perú',
   availability: 'Disponible para prácticas & proyectos freelance',
-  email: 'hola@nataliavargas.pe',
+  email: 'nataly.marchan@correo.pe',
   portraitImage: '/images/about-portrait.jpg',
-  heroStatement: 'Ideas publicitarias y contenido digital que conectan marcas con cultura',
-  heroItalicWord: 'cultura',
-  aboutHeadline: 'Convierto insights cotidianos en campañas memorables y comunidades activas.',
+  heroStatement: 'Ideas publicitarias, activaciones BTL y contenido digital que conectan marcas con personas',
+  heroItalicWord: 'personas',
+  aboutHeadline: 'Convierto insights cotidianos en activaciones memorables, campañas 360° y comunidades digitales.',
   aboutParagraphs: [
-    'Soy Natalia Vargas, estudiante de últimos ciclos de Publicidad y Medios Digitales. Me apasiona el punto exacto donde la estrategia de marca se encuentra con la dirección de arte y el lenguaje nativo de las redes sociales.',
-    'Disfruto tanto construir el concepto creativo de una campaña desde cero como bajarlo a formatos reales que funcionen hoy: desde un Reel de 20 segundos para una marca de moda hasta una activación urbana disruptiva para una bebida o una pollería de barrio.',
-    'Busco sumar en equipos creativos, agencias o marcas que quieran comunicar con claridad, frescura y un propósito visual bien cuidado.'
+    'Soy Nataly Rosa Marchan Collazos, estudiante de Publicidad y Medios Digitales en ISIL, con certificación modular en Dirección y Gestión Creativa. Me apasiona conectar la investigación de insights con conceptos claros que funcionen tanto en experiencia presencial como en pantallas.',
+    'He gestionado contenido real para marcas de moda femenina como Kushi Illari Boutique —desde la parrilla mensual y grabación de Reels/TikToks hasta storytelling de empaquetado— y he conceptualizado y montado activaciones BTL, propuestas de co-branding y campañas integradas para marcas de consumo masivo.',
+    'Busco sumar en equipos creativos, agencias o marcas que quieran comunicar con cercanía, estrategia bien pensada y una ejecución cuidada en cada detalle.'
   ],
   philosophyQuote:
-    'Una buena campaña no interrumpe lo que la gente está viendo; se convierte en algo que la gente quiere compartir.',
+    'Una buena idea publicitaria no solo se entiende en una presentación: se siente en la experiencia real de quien la vive o la comparte.',
   education: [
     {
-      period: '2022 — Actualidad',
-      title: 'Bachiller en Publicidad y Medios Digitales',
-      organization: 'Universidad de Ciencias y Artes de la Comunicación',
+      period: 'En curso · 2024 — 2026',
+      title: 'Publicidad y Medios Digitales',
+      organization: 'ISIL — Instituto San Ignacio de Loyola',
       location: 'Lima, Perú',
       description:
-        'Enfoque en dirección creativa, planificación de campañas integradas, comportamiento del consumidor y producción audiovisual para entornos digitales.',
+        'Formación enfocada en fundamentos y casuística publicitaria, dirección creativa, estrategias BTL, co-branding, planificación de campañas integradas y producción de contenidos para entornos digitales.',
       highlights: [
-        'Tercio superior · 8.º ciclo',
-        'Primer puesto en taller de Campañas Integradas 2025',
-        'Co-coordinadora del club estudiantil de Dirección de Arte'
+        'Desarrollo de proyectos aplicados para marcas como Sprite, Don Belisario × Inca Kola, Purina Dog Chow y Yanbal',
+        'Ejecución real de activación BTL en campus (Sprite Resort) en rol de montaje y producción',
+        'Experiencia en conceptualización grupal bajo metodología de agencia estudiantil (Graphs / Causa Creativa)'
       ]
     },
     {
-      period: '2025',
-      title: 'Especialización en Social Media Strategy & Paid Media',
-      organization: 'Escuela Creativa Digital (Certificación)',
-      location: 'Modalidad Híbrida',
+      period: 'Ago — Dic 2025',
+      title: 'Certificado Modular: Dirección y Gestión Creativa',
+      organization: 'ISIL — Instituto San Ignacio de Loyola (R.M. N.º 305-2018-MINEDU)',
+      location: 'Lima, Perú',
       description:
-        'Diseño de embudos de contenido orgánico en TikTok e Instagram, guionización de video corto, analítica de retención y fundamentos de Meta & TikTok Ads.',
+        'Módulo formativo de 42 créditos (848 horas) centrado en investigación, planificación estratégica y exploración de insights para desarrollar mensajes publicitarios creativos con criterio ético y calidad artística.',
       highlights: [
-        'Proyecto final premiado por mejor estrategia orgánica',
-        'Dominio de dashboards de métricas y calendarios editoriales'
+        'Código de Registro IES N.º 60889766-202520-CPUB-1',
+        'Competencia en diseño de estrategias para lanzamiento y posicionamiento de productos y servicios'
       ]
-    },
-    {
-      period: '2024',
-      title: 'Taller Intensivo de Branding & Storytelling Visual',
-      organization: 'Laboratorio de Marca LATAM',
-      location: 'Online',
-      description:
-        'Construcción de territorios de marca, tono de voz, conceptos paraguas y aplicaciones de identidad para marcas de consumo masivo y retail.',
-      highlights: ['Desarrollo de 2 casos de rebranding conceptual']
     }
   ],
   experience: [
     {
       period: '2025 — 2026',
-      title: 'Content Creator & Social Media Manager (Freelance)',
-      organization: 'KOVA Studio — Marca de Ropa Urbana',
-      location: 'Lima, Perú',
+      title: 'Content Creator & Social Media Manager',
+      organization: 'Kushi Illari Boutique — Moda Femenina (@boutique.kushillari)',
+      location: 'Lince, Lima, Perú',
       description:
-        'Gestión integral de Instagram y TikTok: planificación mensual, dirección creativa de grabaciones, edición de Reels/TikToks, copywriting y community management.',
+        'Gestión integral de Instagram y TikTok para la boutique: planificación mensual en calendario editorial, grabación en tienda física, edición de piezas verticales, cobertura de lanzamientos y comunicación de beneficios de compra.',
       highlights: [
-        'Crecimiento de +240% en alcance orgánico en 4 meses',
-        'Producción de 48 piezas audiovisuales cortas con 4.9% de engagement promedio',
-        'Lanzamiento digital de 2 colecciones cápsula con sold-out en 72 horas'
+        'Producción de piezas promocionales destacando variedad de prendas, probadores, pagos digitales (Izipay, Yape, Plin, tarjetas) y sistema de apartados',
+        'Creación de contenido behind-the-scenes ("Detrás de cada pedido") enfocado en experiencia de unboxing y detalle de marca',
+        'Planificación de parrilla multiformato: Reels, TikToks, Stories diarias, catálogo digital y transmisiones Live'
       ]
     },
     {
       period: '2024 — 2025',
-      title: 'Practicante Creativa & Asistente de Medios Digitales',
-      organization: 'Estudio Pulso Creativo',
+      title: 'Creativa Publicitaria & Producción BTL (Proyectos Aplicados)',
+      organization: 'Agencias Estudiantiles Graphs & Causa Creativa · ISIL',
       location: 'Lima, Perú',
       description:
-        'Apoyo en conceptualización de campañas, bajadas gráficas para redes sociales, monitoreo de tendencias en TikTok y armado de presentaciones de pitch para clientes.',
+        'Conceptualización de campañas 360°, co-branding, activaciones BTL, desarrollo web y montaje presencial para briefs reales y simulados de consumo masivo y tecnología.',
       highlights: [
-        'Participación en 6 propuestas creativas para marcas de consumo y gastronomía',
-        'Creación de reportes mensuales de contenido y benchmarks competitivos'
+        'Encargada de montaje y ejecución presencial en la activación real "Sprite Resort" en campus ISIL',
+        'Co-creación de campañas integradas para Don Belisario × Inca Kola, Purina Dog Chow, Yanbal Total Block y Punto Laptop'
       ]
-    },
-    {
-      period: '2023 — 2024',
-      title: 'Redactora Creativa & Community Voluntaria',
-      organization: 'Festival Universitario de Diseño y Cultura',
-      location: 'Lima, Perú',
-      description:
-        'Creación de guiones, cobertura en tiempo real en Stories/TikTok y redacción de piezas de campaña para convocatoria estudiantil.',
-      highlights: ['+1,400 asistentes registrados a través de difusión orgánica en redes']
     }
   ],
   toolGroups: [
     {
-      category: 'Diseño & Dirección de Arte',
+      category: 'Diseño & Dirección Visual',
       tools: [
-        { name: 'Adobe Photoshop', focus: 'Retoque, fotomontaje y piezas clave' },
-        { name: 'Adobe Illustrator', focus: 'Identidad, sistemas gráficos y vectores' },
-        { name: 'Figma', focus: 'Moodboards, layouts digitales y presentaciones' },
-        { name: 'Adobe InDesign', focus: 'Manuales de marca y decks editoriales' }
+        { name: 'Adobe Photoshop', focus: 'Fotomontajes, piezas clave y retoque' },
+        { name: 'Adobe Illustrator', focus: 'Key visuals, gráficos de campaña y vectores' },
+        { name: 'Canva Pro', focus: 'Presentaciones creativas, decks y parrillas ágiles' },
+        { name: 'Wix Studio / Editor', focus: 'Maquetación de sitios web y presencia digital' }
       ]
     },
     {
       category: 'Video, Reels & Contenido',
       tools: [
-        { name: 'CapCut Pro', focus: 'Edición ágil nativa para TikTok y Reels' },
-        { name: 'Adobe Premiere Pro', focus: 'Montaje audiovisual y cápsulas de campaña' },
-        { name: 'After Effects', focus: 'Motion graphics básico y tipografía cinética' },
-        { name: 'Lightroom', focus: 'Colorización editorial para feeds coherentes' }
+        { name: 'CapCut', focus: 'Edición ágil nativa para TikTok e Instagram Reels' },
+        { name: 'Producción Móvil', focus: 'Grabación en tienda, unboxing y cobertura BTL' },
+        { name: 'Guion & Storyboard', focus: 'Estructuras narrativas para spots y video corto' },
+        { name: 'Lightroom', focus: 'Ajuste de color y estética visual para feeds' }
       ]
     },
     {
-      category: 'Redes Sociales & Medios',
+      category: 'Redes Sociales & Gestión',
       tools: [
-        { name: 'Meta Business Suite', focus: 'Programación, analítica y pauta básica' },
-        { name: 'TikTok Creative Center', focus: 'Detección de trends, audios y hooks' },
-        { name: 'Metricool', focus: 'Reportes de rendimiento y parrillas' },
-        { name: 'Google Analytics', focus: 'Lectura de tráfico y comportamiento web' }
+        { name: 'Instagram & TikTok', focus: 'Gestión de comunidad, Reels, Stories y Lives' },
+        { name: 'Calendario Editorial', focus: 'Planificación mensual por horarios y objetivos' },
+        { name: 'Meta Business Suite', focus: 'Programación y seguimiento de publicaciones' },
+        { name: 'TikTok Creative Center', focus: 'Búsqueda de trends, hooks y formatos nativos' }
       ]
     },
     {
-      category: 'Estrategia & Flujo Creativo',
+      category: 'Estrategia Publicitaria',
       tools: [
-        { name: 'Notion', focus: 'Calendarios editoriales y briefs creativos' },
-        { name: 'Copywriting Publicitario', focus: 'Titulares, guiones y tono de marca' },
-        { name: 'Brand Storytelling', focus: 'Insights, territorio y concepto paraguas' },
-        { name: 'Miro', focus: 'Mapeo de ideas, customer journey y research' }
+        { name: 'Exploración de Insights', focus: 'Investigación de público y propuesta de valor' },
+        { name: 'Activaciones BTL', focus: 'Diseño de mecánicas, montaje y rebote digital' },
+        { name: 'Co-Branding & 360°', focus: 'Alianzas de marca, trade marketing y promos' },
+        { name: 'Copywriting', focus: 'Titulares, conceptos paraguas y guiones creativos' }
       ]
     }
   ],
   socials: [
-    { name: 'Instagram', handle: '@natvargas.creative', url: 'https://instagram.com' },
-    { name: 'TikTok', handle: '@nat.publicidad', url: 'https://tiktok.com' },
-    { name: 'LinkedIn', handle: '/in/natalia-vargas-publicidad', url: 'https://linkedin.com' },
-    { name: 'Behance', handle: 'behance.net/nataliavargas', url: 'https://behance.net' }
+    {
+      name: 'Instagram (Proyecto Boutique)',
+      handle: '@boutique.kushillari',
+      url: 'https://www.instagram.com/boutique.kushillari/'
+    },
+    {
+      name: 'TikTok (Proyecto Boutique)',
+      handle: '@boutique.kushillari',
+      url: 'https://www.tiktok.com/@boutique.kushillari?_r=1'
+    },
+    {
+      name: 'Sitio Web Wix (Proyecto)',
+      handle: 'puntolaptop · Wix',
+      url: 'https://huamanmonterox.wixsite.com/puntolaptop/contactanos'
+    }
   ]
 };
 
 export const PROJECTS: Project[] = [
   {
-    id: 'kova-social',
+    id: 'kushi-illari',
     index: '01',
-    slug: 'kova-studio-social-media',
-    title: 'KOVA Studio',
-    subtitle: 'Gestión creativa de TikTok e Instagram para moda urbana',
-    client: 'KOVA Studio (Marca de Ropa)',
+    slug: 'kushi-illari-boutique-social-media',
+    title: 'Kushi Illari Boutique',
+    subtitle: 'Gestión creativa de Instagram y TikTok para moda femenina en Lima',
+    client: 'Kushi Illari Boutique (Av. Ignacio Merino 2069, Lince)',
     category: 'Social Media',
-    year: '2026',
-    duration: '4 meses · Gestión continua',
-    role: 'Social Media Manager, Dirección de Contenido & Edición',
+    year: '2025 — 2026',
+    duration: 'Experiencia Laboral · Gestión Continua',
+    role: 'Content Creator & Social Media Manager',
     deliverables: [
-      'Estrategia de Contenidos IG & TikTok',
-      'Calendario Editorial Mensual',
-      'Producción & Edición de Reels/TikToks',
-      'Copywriting & Gestión de Comunidad'
+      'Calendario Editorial Mensual (IG & TikTok)',
+      'Piezas Promocionales de Experiencia en Tienda',
+      'Video Behind-the-Scenes "Detrás de cada pedido"',
+      'Gestión de Parrilla, Stories y Catálogo'
     ],
-    accentColor: '#5B6E58',
-    accentSoft: 'rgba(91, 110, 88, 0.10)',
-    heroImage: '/images/kova-hero.jpg',
-    secondaryImage: '/images/kova-social.jpg',
+    accentColor: '#A85673',
+    accentSoft: 'rgba(168, 86, 115, 0.10)',
+    heroImage: '/images/projects/kushi-hero.jpg',
+    secondaryImage: '/images/projects/kushi-secondary.jpg',
     shortSummary:
-      'Transformamos un feed de catálogo estático en una comunidad viva en TikTok e Instagram mediante storytelling de estilo real, behind-the-scenes y formatos nativos de alta retención.',
+      'Construimos una presencia cercana y confiable en Instagram y TikTok combinando recorridos por tienda, beneficios reales de compra y el cuidado artesanal detrás de cada pedido.',
     brief:
-      'KOVA Studio, una marca independiente de streetwear minimalista, publicaba únicamente fotos de producto sobre fondo blanco. Aunque las prendas tenían excelente calidad, su cuenta de Instagram crecía lentamente y su perfil de TikTok no lograba conectar con audiencia joven ni generar intención de compra.',
+      'Kushi Illari Boutique, tienda de ropa femenina ubicada en Lince (Lima) con envíos nacionales y recojo en tienda, necesitaba fortalecer su presencia digital para atraer nuevas clientas al local físico y generar confianza en compras online. El reto era mostrar mucho más que prendas: comunicar la experiencia real en boutique, sus facilidades de pago y el cuidado en cada entrega.',
     insight:
-      'La Generación Z no sigue marcas de ropa para ver catálogos: las sigue para imaginar cómo se vería esa prenda en su propia rutina, escuchar la historia detrás de cada drop y sentir que pertenece a un círculo creativo.',
-    bigIdeaTitle: '“Viste el Proceso, No Solo la Prenda”',
+      'Al comprar moda femenina en redes sociales, la decisión no depende solo del diseño de la prenda: las clientas buscan confianza tangible —ver cómo luce la tienda, saber que hay probadores, facilidades de pago y comprobar que su pedido llegará impecable.',
+    bigIdeaTitle: '“Cercanía en Tienda, Detalle en Cada Pedido”',
     bigIdeaCopy:
-      'Rediseñamos la presencia digital en dos velocidades complementarias: TikTok como el diario crudo y cercano del taller (pruebas de tela, styling en 15 segundos, detrás de cámara) e Instagram como revista editorial cuidada donde los drops cobran valor aspiracional.',
+      'Estructuramos una estrategia de contenido orgánico en dos frentes complementarios: piezas promocionales ágiles que resuelven objeciones reales de compra (probadores, variedad de prendas, pagos con Izipay/Yape/Plin/tarjetas y sistema de apartados) y cápsulas emocionales de "Detrás de cada pedido" que muestran el empaquetado cuidado, tarjeta de marca y obsequio para elevar el valor percibido.',
     pillars: [
       {
         number: '01',
-        title: 'Hooks de 3 segundos en TikTok',
+        title: 'Contenido de confianza y experiencia física',
         description:
-          'Cada video abre con una acción visual inmediata (sonido de tela, cambio de outfit en transición o pregunta directa) para elevar la retención sobre el 45%.'
+          'Videos cortos que abren las puertas de la boutique en Lince: muestra de prendas en tendencia, apertura de probadores, opciones de pago digitales y sistema de apartados para eliminar barreras de visita.'
       },
       {
         number: '02',
-        title: 'Estética editorial coherente en Instagram',
+        title: 'Storytelling "Detrás de cada pedido"',
         description:
-          'Curaduría de paleta neutra, carruseles con tips de styling ("3 formas de usar el hoodie oversized") y portadas limpias que funcionan como lookbook interactivo.'
+          'Piezas centradas en el ritual de armado del pedido: selección del outfit, doblado prolijo en caja kraft, tarjeta oficial de Kushi Illari y detalle sorpresa (scrunchie) que convierte cada envío en un momento compartible.'
       },
       {
         number: '03',
-        title: 'Comunidad co-creadora de drops',
+        title: 'Calendario editorial multiformato',
         description:
-          'Encuestas en Stories y respuestas en video a comentarios en TikTok para que la audiencia elija el color de la siguiente cápsula antes del lanzamiento.'
+          'Planificación mensual organizada por horarios clave en TikTok e Instagram: dinámicas de styling ("¿Qué look te gusta más?", "3 errores que arruinan tu outfit"), novedades de catálogo, Stories diarias y Lives.'
       }
     ],
-    metrics: [
+    videoReels: [
       {
-        value: '+240%',
-        label: 'Alcance orgánico',
-        detail: 'Crecimiento sostenido en 120 días sin aumentar presupuesto de pauta.'
+        title: '¿Por qué comprar en nuestra boutique?',
+        tag: 'Pieza Promocional · Tienda',
+        format: 'Reel / TikTok · 9:16',
+        description:
+          'Recorrido dinámico que comunica los diferenciales clave de Kushi Illari: variedad de prendas femeninas, probadores disponibles, múltiples medios de pago (Izipay, tarjetas, transferencias, Yape y Plin), redes activas y sistema de apartados.',
+        src: '/videos/kushi-boutique-promo.mp4',
+        poster: '/images/projects/kushi-video-promo-poster.jpg'
       },
       {
-        value: '1.4M',
-        label: 'Reproducciones TikTok',
-        detail: 'Acumuladas en 24 videos nativos con 3 piezas virales sobre 200K.'
-      },
-      {
-        value: '4.9%',
-        label: 'Tasa de Engagement',
-        detail: 'Guardados y compartidos multiplicados x3.4 en carruseles de styling.'
-      },
-      {
-        value: '72h',
-        label: 'Sold-out Cápsula 02',
-        detail: 'Tráfico directo desde enlace en bio y respuestas automáticas en DM.'
+        title: 'Detrás de cada pedido',
+        tag: 'Behind the Scenes · Unboxing',
+        format: 'Reel / TikTok · 9:16',
+        description:
+          'Pieza audiovisual enfocada en el proceso real de preparación y empaquetado de pedidos: presentación del conjunto, doblado cuidadoso en caja kraft, tarjetería de marca y detalle de cortesía para fidelizar a cada clienta.',
+        src: '/videos/kushi-detras-pedido.mp4',
+        poster: '/images/projects/kushi-video-pedido-poster.jpg'
       }
     ],
     socialShowcase: [
       {
         platform: 'TikTok',
-        format: 'Video Corto · 0:22',
-        title: 'POV: Diseñamos el hoodie perfecto en 48h',
-        hook: '“¿Por qué casi todos los hoodies pierden la forma al tercer lavado?”',
-        caption: 'Mostramos el gramaje real de 480g en taller + prueba en calle con transición rítmica.',
-        views: '312K vistas',
-        engagement: '28.4K likes · 4.1K guardados',
-        tag: 'Behind the Brand'
+        format: 'Video Promocional · 9:16',
+        title: '¿Por qué comprar en nuestra boutique?',
+        hook: '“Por qué comprar en nuestra boutique — conoce todo lo que tenemos para ti”',
+        caption:
+          'Recorrido ágil por tienda física en Lince destacando probadores, POS Izipay, transferencias, Yape/Plin, presencia omnicanal y sistema de apartados.',
+        views: 'Conversión & Tráfico',
+        engagement: 'Objeciones resueltas en 25s',
+        tag: 'Experiencia en Tienda'
       },
       {
         platform: 'Instagram',
-        format: 'Carrusel · 7 slides',
-        title: '1 Pantalón Cargo, 3 Looks de Ciudad',
-        hook: 'Portada limpia con tipografía editorial y guía visual día / estudio / noche.',
-        caption: 'Formato pensado para maximizar guardados antes del lanzamiento de fin de semana.',
-        views: '84K alcance',
-        engagement: '6.2K guardados · 1.9K compartidos',
-        tag: 'Educativo / Styling'
+        format: 'Reel Behind the Scenes · 9:16',
+        title: 'Así es como preparamos cada pedido',
+        hook: '“Así es como preparamos cada pedido en Kushi Illari”',
+        caption:
+          'Paso a paso del armado en caja kraft con tarjeta de marca y scrunchie de regalo, reforzando confianza para envíos a Lima y provincias (Shalom).',
+        views: 'Confianza & Branding',
+        engagement: 'Alto valor percibido',
+        tag: 'Detrás de Cada Pedido'
       },
       {
-        platform: 'TikTok',
-        format: 'Reply Video · 0:18',
-        title: 'Respondiendo a @camila: ¿Cómo queda la talla M?',
-        hook: 'Comparativa real en 3 tipos de cuerpo distintos dentro del estudio con luz natural.',
-        caption: 'Redujo en 60% las dudas repetitivas por DM y disparó clics a tienda.',
-        views: '196K vistas',
-        engagement: '14.7K likes · 890 comentarios',
-        tag: 'Comunidad & Conversión'
+        platform: 'Instagram',
+        format: 'Parrilla Mensual · Feed & Stories',
+        title: 'Styling interactivo & tendencias de temporada',
+        hook: '“¿Qué look te gusta más?” · “3 errores que arruinan tu outfit”',
+        caption:
+          'Calendario estructurado con horarios estratégicos para TikTok, Reels, catálogo de prendas nuevas, encuestas en Stories y sesiones Live.',
+        views: 'Comunidad Activa',
+        engagement: 'IG + TikTok sincronizados',
+        tag: 'Calendario Editorial'
+      }
+    ],
+    metrics: [
+      {
+        value: '2',
+        label: 'Canales Gestionados',
+        detail: 'Estrategia coordinada entre Instagram (@boutique.kushillari) y TikTok.'
+      },
+      {
+        value: '100%',
+        label: 'Producción In-House',
+        detail: 'Guionización, grabación en boutique, edición vertical y publicación.'
+      },
+      {
+        value: '4+',
+        label: 'Formatos por Semana',
+        detail: 'Combinación de Reels, TikToks, Stories diarias, catálogo y Lives.'
+      },
+      {
+        value: 'O2O',
+        label: 'Online a Tienda Física',
+        detail: 'Contenido diseñado para impulsar visitas a Lince y pedidos por envío nacional.'
+      }
+    ],
+    externalLinks: [
+      {
+        label: 'Instagram @boutique.kushillari',
+        url: 'https://www.instagram.com/boutique.kushillari/',
+        platform: 'instagram'
+      },
+      {
+        label: 'TikTok @boutique.kushillari',
+        url: 'https://www.tiktok.com/@boutique.kushillari?_r=1',
+        platform: 'tiktok'
       }
     ],
     galleryCaption:
-      'Dirección de contenido para jornada de producción mensual: piezas verticales para TikTok/Reels combinadas con fotografía editorial para el grid de Instagram.'
+      'Gestión integral de redes sociales para Kushi Illari Boutique: parrilla editorial, difusión de medios de pago y sistema de apartados en tienda.'
   },
   {
-    id: 'sprite-termo',
+    id: 'sprite-resort',
     index: '02',
-    slug: 'campana-branding-citrus-refrescante',
-    title: 'Sin Filtro, 100% Lima',
-    subtitle: 'Campaña publicitaria y branding innovador para bebida cítrica (Concepto tipo Sprite)',
-    client: 'Proyecto de Branding · Inspirado en Sprite',
-    category: 'Branding & Campaña',
+    slug: 'sprite-resort-activacion-btl',
+    title: 'Sprite Resort',
+    subtitle: 'Activación BTL real en campus universitario para aliviar el estrés de exámenes',
+    client: 'Sprite · Proyecto Aplicado (Causa Creativa · ISIL)',
+    category: 'Activación BTL',
     year: '2025',
-    duration: 'Proyecto de Campaña · 6 semanas',
-    role: 'Concepto Creativo, Branding de Campaña & Dirección de Arte',
+    duration: 'Conceptualización & Ejecución Presencial',
+    role: 'Encargada de Montaje & Conceptualización Creativa',
     deliverables: [
-      'Concepto Paraguas de Campaña',
-      'Activación Urbana Termosensible (OOH)',
-      'Sistema Visual & Copywriting',
-      'Bajada Digital & Reels Interactivos'
+      'Concepto Creativo & Identidad "Sprite Resort"',
+      'Guion de Video de Convocatoria (4 Escenas)',
+      'Diseño de Espacio Sensorial & Dinámica BTL',
+      'Montaje Real de Activación en Campus & Rebote Digital'
     ],
     accentColor: '#0E9F58',
     accentSoft: 'rgba(14, 159, 88, 0.10)',
-    heroImage: '/images/sprite-hero.jpg',
-    secondaryImage: '/images/sprite-ooh.jpg',
+    heroImage: '/images/projects/sprite-hero.jpg',
+    secondaryImage: '/images/projects/sprite-secondary.jpg',
     shortSummary:
-      'Una campaña de branding disruptiva que convierte el calor literal y el "calor" del drama cotidiano en una experiencia interactiva en vía pública y redes sociales.',
+      'Transformamos el campus de ISIL en un mini resort vacacional durante la semana de finales, combinando un espacio sensorial, una piscina de pelotas de emociones y bebidas heladas.',
     brief:
-      'Las bebidas gaseosas lima-limón compiten en un mercado saturado de mensajes genéricos sobre "refrescar la sed". El reto consistía en idear una campaña publicitaria innovadora con fuerte foco en branding capaz de rejuvenecer la marca frente a jóvenes universitarios y generar conversación orgánica.',
+      'Durante la temporada de exámenes finales, los estudiantes de ISIL atraviesan altos niveles de estrés, cansancio y frustración. El reto fue conceptualizar y ejecutar en la vida real una activación BTL para Sprite capaz de conectar genuinamente con el público universitario a través de una pausa tangible de frescura y relajación.',
     insight:
-      'Entre el tráfico de verano, las presiones académicas y las redes llenas de exageración, los jóvenes sienten que todo está "demasiado caliente" y lleno de drama innecesario. La verdadera frescura hoy no es solo física: es mental y directa.',
-    bigIdeaTitle: '“Cuando Sube el Calor, Baja el Filtro”',
+      'En plena semana de finales, el estudiante no quiere otro aviso publicitario: sueña con teletransportarse por cinco minutos a sus vacaciones y sacudirse la presión académica antes de volver a clase.',
+    bigIdeaTitle: '“No te estreses. Refréscate.”',
     bigIdeaCopy:
-      'Creamos una identidad de campaña impulsada por sensores climáticos en tiempo real: vallas digitales y paraderos urbanos que reaccionan a la temperatura de la ciudad. Mientras más grados marca el termómetro, más directos, honestos y refrescantes se vuelven los mensajes —activando cupones digitales de bebida helada cuando la ciudad supera los 28 °C.',
+      'Creamos Sprite Resort, una activación experiencial que llevó la atmósfera de un resort veraniego al corazón del instituto. Desde un video de convocatoria con transformación visual (de tonos grises del cansancio a colores vibrantes de playa tras el primer sorbo) hasta un módulo físico con piscina de pelotas, zona de descanso y barra refrescante.',
     pillars: [
       {
         number: '01',
-        title: 'Branding cinético reactivo al clima',
+        title: 'Video de convocatoria en 4 escenas',
         description:
-          'Tipografía líquida y condensación visual que cambia de intensidad según la temperatura en vivo, convirtiendo el medio exterior en un termómetro cultural.'
+          'Pieza audiovisual de expectativa que muestra a una estudiante agotada en semana de finales cuya realidad se transforma instantáneamente a un look veraniego y vibrante al probar una Sprite helada.'
       },
       {
         number: '02',
-        title: 'Vallas con micro-brisa & código QR al instante',
+        title: 'Espacio sensorial & reto de 5 segundos',
         description:
-          'Paraderos intervenidos en zonas universitarias con rocío frío real y QR dinámico que desbloquea un 2x1 en bodegas cercanas solo en horas pico de calor.'
+          'Zona de relax con asientos cómodos, ambientación tropical y una piscina de pelotas etiquetadas con emociones de exámenes: con goggles puestos, cada estudiante tenía 5 segundos para encontrar la emoción asignada y crear una frase.'
       },
       {
         number: '03',
-        title: 'Extensión social "Termómetro de Drama"',
+        title: 'Montaje real, barista & rebote digital',
         description:
-          'Filtro interactivo y dinámica en TikTok donde los usuarios comparten situaciones cotidianas "insoportables" que la marca enfría con respuestas ingeniosas en video.'
-      }
-    ],
-    metrics: [
-      {
-        value: '28°C+',
-        label: 'Activador Dinámico',
-        detail: 'Disparador automático de mensajes OOH y cupones geolocalizados.'
-      },
-      {
-        value: '18',
-        label: 'Puntos Urbanos Clave',
-        detail: 'Circuito de paraderos cercanos a universidades y playas urbanas.'
-      },
-      {
-        value: '3x',
-        label: 'Recordación Estimada',
-        detail: 'Evaluación en focus group estudiantil frente a avisos estáticos tradicionales.'
-      },
-      {
-        value: '100%',
-        label: 'Coherencia 360°',
-        detail: 'Un mismo código visual desde la lata hasta las pantallas digitales.'
+          'Ejecución presencial en campus con entrega de Sprite helada al completar el reto y photo-opportunity temático ("Sprite Resort") pensado para amplificación orgánica en Stories de los estudiantes.'
       }
     ],
     campaignBoard: {
-      sectionLabel: 'Concepto & Sistema de Mensajes',
-      sectionTitle: 'Vallas que cambian con el termómetro de la ciudad',
+      sectionLabel: 'Recorrido de la Experiencia BTL',
+      sectionTitle: 'De la convocatoria audiovisual a la activación en vivo',
       description:
-        'El branding de campaña adapta su copy y nivel de frescura visual en tiempo real según el clima urbano:',
+        'Cada fase del proyecto conectó el territorio emocional del estrés estudiantil con la frescura icónica de Sprite:',
       items: [
         {
-          tag: '24 °C · Modo Suave',
-          headline: '“Respira hondo. El día recién empieza y todavía hay hielo.”',
-          subcopy: 'Visual limpio con burbujas sutiles y fondo claro luminoso en pantallas matutinas.',
-          format: 'DOOH Mañana · Paraderos'
+          tag: 'Fase 01 · Convocatoria',
+          headline: '“Tras una época llena de estrés, solo queremos una pausa de frescura.”',
+          subcopy:
+            'Spot en 4 escenas: llegada agotada con filtro gris, máquina expendedora, explosión de burbujas verdes y transformación veraniega.',
+          format: 'Video Digital Campus'
         },
         {
-          tag: '28 °C · Alerta de Calor',
-          headline: '“Menos drama en el tráfico, más lima helada en tu mano.”',
-          subcopy: 'Aparece el QR dinámico de canje rápido en tiendas a menos de 200 metros.',
-          format: 'DOOH Mediodía + Cupón Geo'
+          tag: 'Fase 02 · Dinámica BTL',
+          headline: '“5 segundos, goggles puestos y una piscina llena de emociones.”',
+          subcopy:
+            'El participante saca un papel con una emoción de parciales, busca la pelotita correspondiente en la piscina y dice una frase para canjear su Sprite con el barista.',
+          format: 'Experiencia Interactiva'
         },
         {
-          tag: '31 °C · Pico Máximo',
-          headline: '“A esta temperatura nadie debería pensar. Solo destapa.”',
-          subcopy: 'Activa brisa refrescante en el paradero e invade Stories con pauta geolocalizada.',
-          format: 'Activación Física + Social Paid'
+          tag: 'Fase 03 · Rebote Digital',
+          headline: '“Un adelanto de las vacaciones dentro del campus.”',
+          subcopy:
+            'Backdrop verde de Sprite Resort, flotadores, lentes veraniegos y zona lounge para fotos compartibles en redes estudiantiles.',
+          format: 'Photo Op + UGC'
         }
       ]
     },
-    galleryCaption:
-      'Prototipo de intervención urbana en paradero inteligente: gráfica cítrica de alto contraste y experiencia refrescante en vía pública.'
-  },
-  {
-    id: 'brasa-barrio',
-    index: '03',
-    slug: 'brasa-y-barrio-rebranding-polleria',
-    title: 'Brasa & Barrio',
-    subtitle: 'Rebranding contemporáneo y campaña cultural para pollería',
-    client: 'Brasa & Barrio (Pollería Artesanal)',
-    category: 'Branding & Campaña',
-    year: '2025',
-    duration: 'Proyecto de Branding · 8 semanas',
-    role: 'Estrategia de Marca, Rebranding & Campaña de Lanzamiento',
-    deliverables: [
-      'Posicionamiento & Tono de Voz',
-      'Sistema de Packaging Coleccionable',
-      'Campaña OOH "El Fuego Que Nos Junta"',
-      'Contenido Gastronómico para Redes'
-    ],
-    accentColor: '#C84B28',
-    accentSoft: 'rgba(200, 75, 40, 0.10)',
-    heroImage: '/images/polleria-hero.jpg',
-    secondaryImage: '/images/polleria-brand.jpg',
-    shortSummary:
-      'Reinventamos la experiencia visual y publicitaria de una pollería tradicional, elevándola de "comida rápida de barrio" a una marca cultural moderna que celebra la sobremesa.',
-    brief:
-      'La mayoría de pollerías locales compiten únicamente por precio y combos con diseños saturados, colores estridentes y poca diferenciación emocional. El desafío fue construir una campaña y propuesta de branding innovadora que mantuviera la calidez popular del pollo a la brasa, pero con un lenguaje contemporáneo capaz de conquistar tanto a familias como a jóvenes urbanos.',
-    insight:
-      'Nadie pide un pollo a la brasa solo por hambre: se pide porque llegó una visita, porque se cerró un ciclo o porque es domingo sin ganas de cocinar. El verdadero producto no es el combo; es la excusa perfecta para juntar a la mesa.',
-    bigIdeaTitle: '“El Fuego Que Nos Junta”',
-    bigIdeaCopy:
-      'Reemplazamos la publicidad tradicional de "ofertas en rojo y amarillo" por un branding cálido inspirado en la cerámica, el carbón y las frases reales que se dicen en cada sobremesa. El packaging de delivery se convirtió en el principal medio publicitario: cajas coleccionables ilustradas con "reglas no escritas de la pollería" que la gente fotografía y comparte antes de abrir.',
-    pillars: [
+    galleryImages: [
       {
-        number: '01',
-        title: 'Packaging que habla en la mesa',
-        description:
-          'Cajas kraft con tipografía editorial terracota y frases coleccionables ("El que llega tarde se queda sin la parte doradita", "Más ají, menos protocolo") diseñadas para generar contenido UGC espontáneo.'
+        src: '/images/projects/sprite-stand-3d.jpg',
+        title: 'Propuesta de montaje y ambientación del stand',
+        caption: 'Diseño espacial del módulo Sprite Resort con barra, bancas altas, vegetación tropical y piscina de pelotas.'
       },
       {
-        number: '02',
-        title: 'Dirección de arte gastronómica honesta',
-        description:
-          'Fotografía con textura real de brasas, cerámica artesanal y luz natural cálida que eleva la percepción de calidad sin perder cercanía de barrio.'
+        src: '/images/projects/sprite-mecanica.jpg',
+        title: 'Espacio sensorial y mecánica participativa',
+        caption: 'Integración de zona de descanso relajante junto al reto interactivo para maximizar permanencia.'
       },
       {
-        number: '03',
-        title: 'Campaña hiperlocal "Viernes de Mesa Larga"',
-        description:
-          'Afiches callejeros con guiños a las calles del distrito y campaña de micro-videos ASMR del crujido de papas y salsa de ají para pauta geolocalizada de viernes 6:00 p.m.'
+        src: '/images/projects/sprite-rebote.jpg',
+        title: 'Photo-opportunity de rebote digital',
+        caption: 'Escenografía diseñada para incentivar fotos y contenido generado por los propios estudiantes.'
+      },
+      {
+        src: '/images/projects/sprite-secondary.jpg',
+        title: 'Ejecución real en campus ISIL',
+        caption: 'Evidencia fotográfica del montaje y participación estudiantil durante la activación presencial.'
       }
     ],
     metrics: [
-      {
-        value: '6',
-        label: 'Ediciones de Caja',
-        detail: 'Sistema coleccionable con frases de sobremesa pensadas para Instagram Stories.'
-      },
-      {
-        value: '+65%',
-        label: 'Intención de Recompra',
-        detail: 'Validado en prueba de concepto con 40 consumidores jóvenes y familias.'
-      },
-      {
-        value: 'ASMR',
-        label: 'Serie Audiovisual',
-        detail: 'Cápsulas sensoriales de 12 segundos diseñadas para horarios pico de delivery.'
-      },
       {
         value: '100%',
-        label: 'Eco-Packaging',
-        detail: 'Materiales reciclables con impresión a 2 tintas para cuidar costos reales.'
-      }
-    ],
-    campaignBoard: {
-      sectionLabel: 'Tono de Voz & Aplicaciones de Marca',
-      sectionTitle: 'El packaging como soporte publicitario orgánico',
-      description:
-        'Cada punto de contacto refuerza la calidez de la marca y motiva a compartir el momento en redes:',
-      items: [
-        {
-          tag: 'Caja Familiar · Edición 01',
-          headline: '“Regla N.º 1: Las papas del fondo siempre son de quien puso la casa.”',
-          subcopy: 'Impresión interior de tapa que sorprende al abrir el pedido en la mesa.',
-          format: 'Packaging Takeaway'
-        },
-        {
-          tag: 'Afiche de Barrio · OOH',
-          headline: '“Hoy no se cocina. Hoy se conversa con las manos llenas de ají.”',
-          subcopy: 'Cartelería en esquinas clave del distrito con estética de prensa moderna.',
-          format: 'Gráfica Callejera'
-        },
-        {
-          tag: 'Pauta Viernes 18:00h',
-          headline: '“Tu semana ya terminó. El horno acaba de abrirse.”',
-          subcopy: 'Anuncio vertical hiperlocal en Instagram y TikTok a 3 km a la redonda.',
-          format: 'Social Ads Geolocalizado'
-        }
-      ]
-    },
-    galleryCaption:
-      'Sistema de identidad aplicado a cajas de delivery, bolsas de papel kraft, papel antigrasa ilustrado y recipientes para salsas.'
-  },
-  {
-    id: 'pulso-cafe',
-    index: '04',
-    slug: 'pulso-cafe-campana-360',
-    title: 'Pulso Café',
-    subtitle: 'Campaña digital 360° y activación cultural para café de especialidad',
-    client: 'Pulso Tostadores (Proyecto Editorial)',
-    category: 'Campaña 360°',
-    year: '2026',
-    duration: 'Proyecto Integrado · 5 semanas',
-    role: 'Estrategia de Medios Digitales, Dirección Creativa & Copy',
-    deliverables: [
-      'Plan de Medios Digitales 360°',
-      'Serie de Afiches & OOH Urbano',
-      'Cápsulas Audiovisuales & Spotify Audio',
-      'Landing de Lanzamiento & Filtros'
-    ],
-    accentColor: '#1E4DB7',
-    accentSoft: 'rgba(30, 77, 183, 0.09)',
-    heroImage: '/images/pulso-hero.jpg',
-    secondaryImage: '/images/pulso-digital.jpg',
-    shortSummary:
-      'Una campaña transmedia que reposiciona el café frío de especialidad como el ritual creativo de la tarde, uniendo cartelería urbana, playlists colaborativas y video corto.',
-    brief:
-      'Pulso, un tostador independiente de café peruano, quería impulsar su nueva línea de Cold Brew en botella fuera del horario clásico de desayuno. El objetivo era construir una campaña de medios digitales 360° que conectara con estudiantes, diseñadores y creativos en su bajón energético de las 3:00 p.m.',
-    insight:
-      'El primer café de la mañana es por rutina; el café de las 3:00 p.m. es por decisión creativa. Es el momento donde arrancan los proyectos personales, las entregas universitarias y las mejores ideas.',
-    bigIdeaTitle: '“Tu Segundo Aire a las 3:00 p.m.”',
-    bigIdeaCopy:
-      'Apropiamos una hora exacta del reloj como territorio de marca. Diseñamos una campaña sincronizada por franja horaria: pauta digital, cápsulas de audio en Spotify y pósters minimalistas en zonas universitarias que invitan a escanear una playlist de enfoque de 45 minutos acompañada de un Cold Brew.',
-    pillars: [
-      {
-        number: '01',
-        title: 'Apropiación de momento (Dayparting)',
-        description:
-          'Toda la pauta en Instagram, TikTok y Spotify se concentra exclusivamente entre las 2:30 p.m. y las 5:00 p.m., optimizando presupuesto y relevancia contextual.'
+        label: 'Activación Ejecutada',
+        detail: 'Llevada del concepto creativo al montaje físico real dentro del campus ISIL.'
       },
       {
-        number: '02',
-        title: 'Afiches urbanos + Playlists NFC/QR',
-        description:
-          'Serie gráfica en azul cobalto y marfil pegada cerca de facultades y coworkings que desbloquea sesiones musicales curadas por artistas locales.'
-      },
-      {
-        number: '03',
-        title: 'Micro-documentales "En Mi Escritorio"',
-        description:
-          'Reels de 30 segundos visitando el escritorio real de jóvenes ilustradores, arquitectos y creativos locales mientras toman su café de la tarde.'
-      }
-    ],
-    metrics: [
-      {
-        value: '14:30–17h',
-        label: 'Ventana de Pauta',
-        detail: 'Estrategia de dayparting para maximizar CTR en el momento exacto de consumo.'
+        value: '5 seg',
+        label: 'Dinámica Gamificada',
+        detail: 'Reto ágil en piscina de pelotas con goggles para mantener flujo constante de participantes.'
       },
       {
         value: '4',
-        label: 'Canales Integrados',
-        detail: 'TikTok, Instagram Reels, Spotify Audio Ads y cartelería urbana con QR.'
+        label: 'Escenas de Convocatoria',
+        detail: 'Guion audiovisual completo con narrativa de transformación visual.'
       },
       {
-        value: '12',
-        label: 'Piezas de Campaña',
-        detail: 'Sistema modular adaptable a feed, stories, afiches y empaque.'
+        value: '5',
+        label: 'Roles de Producción',
+        detail: 'Equipo multidisciplinario con Nataly a cargo del montaje integral de la experiencia.'
+      }
+    ],
+    galleryCaption:
+      'Evidencia real de la activación Sprite Resort ejecutada en campus ISIL: piscina de pelotas, ambientación veraniega y participación estudiantil.'
+  },
+  {
+    id: 'don-belisario-inca-kola',
+    index: '03',
+    slug: 'don-belisario-inca-kola-co-branding',
+    title: 'Don Belisario × Inca Kola',
+    subtitle: 'Propuesta de co-branding por Fiestas Patrias bajo el concepto “De Pecho Sabor Criollo”',
+    client: 'Don Belisario × Inca Kola (Agencia Graphs · ISIL)',
+    category: 'Branding & Campaña',
+    year: '2025',
+    duration: 'Campaña de Fiestas Patrias (15 – 31 de julio)',
+    role: 'Estrategia de Co-Branding, BTL & Desarrollo de Piezas',
+    deliverables: [
+      'Concepto Creativo & Key Visual de Co-Branding',
+      'Plan de Fidelización (Combo, Raspadita & Evento 28 de Julio)',
+      'Activación BTL "Peruanos Salseros" (Stand 5×5m)',
+      'Material POP (Table Tents, Roller Screen) & Rebote Digital'
+    ],
+    accentColor: '#C82820',
+    accentSoft: 'rgba(200, 40, 32, 0.10)',
+    heroImage: '/images/projects/belisario-hero.jpg',
+    secondaryImage: '/images/projects/belisario-secondary.jpg',
+    shortSummary:
+      'Alianza estratégica entre Don Belisario e Inca Kola por Fiestas Patrias que celebra el orgullo gastronómico peruano con fidelización, incentivos internos, BTL interactivo y nueva presentación en botella.',
+    brief:
+      'Con motivo de Fiestas Patrias, Don Belisario necesitaba impulsar el tráfico en sus locales y comunicar un cambio clave en su oferta de bebidas: el paso de servir Inca Kola en jarra a ofrecerla en botella. El desafío consistió en diseñar una campaña de co-branding capaz de fortalecer el vínculo emocional de ambas marcas, fidelizar comensales e incentivar el consumo del combo patrio.',
+    insight:
+      'Para las familias peruanas, el pollo a la brasa acompañado de una Inca Kola no es solo una comida de feriado: es un ritual de identidad que se celebra con orgullo, sabor criollo y el toque personal de sus salsas.',
+    bigIdeaTitle: '“De Pecho Sabor Criollo”',
+    bigIdeaCopy:
+      'Creamos una plataforma festiva de co-branding vigente del 15 al 31 de julio que une tradición, humor y participación. Incluye el combo exclusivo "Pecho Criollo" con tarjetas raspaditas, el evento cultural "Perú con Color" el 28 de julio, un programa de incentivos para mozos y la activación BTL "Peruanos Salseros", donde los clientes crean su propia salsa junto a un chef.',
+    pillars: [
+      {
+        number: '01',
+        title: 'Fidelización 360°: clientes y equipo interno',
+        description:
+          'Combo "Pecho Criollo" con tarjeta raspadita de premios instantáneos y cupón del 10% para la próxima visita, sumado a un incentivo de S/ 200 y medalla de reconocimiento para motivar a los mozos en la venta de Inca Kola en botella.'
       },
       {
-        value: '45 min',
-        label: 'Experiencia de Marca',
-        detail: 'Tiempo promedio de escucha en las playlists "Segundo Aire" en Spotify.'
+        number: '02',
+        title: 'Activación BTL "Peruanos Salseros" & "Perú con Color"',
+        description:
+          'Stand modular de 5×5 metros en 3 locales estratégicos (Miraflores Av. Benavides, Plaza Norte y Real Plaza Salaverry) donde los asistentes preparan su propia salsa evaluada por un chef, acompañado de juegos típicos (rayuela y sapo) y danzas el 28 de julio.'
+      },
+      {
+        number: '03',
+        title: 'Visibilidad POP, vehículos brandeados & rebote digital',
+        description:
+          'Despliegue de table tents en todas las mesas y roller screens en fachada comunicando "Lo que tanto esperaron: Inca Kola en botella", difusión con autos decorados y concurso en redes con #PerusalseroDonBelisario.'
       }
     ],
     campaignBoard: {
-      sectionLabel: 'Ecosistema de Medios 360°',
-      sectionTitle: 'Cada canal cumple una función exacta a las 3:00 p.m.',
+      sectionLabel: 'Ecosistema de Co-Branding & Trade',
+      sectionTitle: 'Cada punto de contacto refuerza la alianza patria',
       description:
-        'Arquitectura de campaña diseñada para acompañar al público desde la calle hasta sus audífonos:',
+        'Desde la calle hasta la mesa del restaurante y las redes sociales, el concepto se adapta a cada soporte:',
       items: [
         {
-          tag: 'Spotify Audio · 0:15',
-          headline: '“Son las 3 de la tarde. Si estás leyendo el mismo párrafo por cuarta vez, te toca Pulso.”',
-          subcopy: 'Cuña minimalista con sonido real de hielo cayendo en vaso de vidrio.',
-          format: 'Audio Digital'
+          tag: 'BTL · 3 Locales Clave',
+          headline: '“Peruanos Salseros: crea tu propia salsa y acompaña tu brasa.”',
+          subcopy:
+            'Stand 5×5m con chef, insumos y calificación en vivo de las 3 mejores salsas en Miraflores, Plaza Norte y Salaverry.',
+          format: 'Activación Presencial'
         },
         {
-          tag: 'Cartelería Urbana',
-          headline: '“Despierta el ritmo. Escanea tu playlist de enfoque + Cold Brew.”',
-          subcopy: 'Serie de 3 pósters cobalto y marfil en paraderos y cafés aliados.',
-          format: 'OOH + QR Interactivo'
+          tag: 'Material POP · En Mesa',
+          headline: '“Lo que tanto esperaron: Inca Kola en botella.”',
+          subcopy:
+            'Table tents en todas las mesas y roller screens de alto impacto en entrada para comunicar la nueva presentación y combos patrios.',
+          format: 'Table Tents + Roller Screen'
         },
         {
-          tag: 'TikTok & Reels',
-          headline: '“¿Qué hay en el escritorio de los creativos a las 3:00 p.m.?”',
-          subcopy: 'Serie orgánica con creadores locales mostrando procesos reales sin guion rígido.',
-          format: 'Branded Content'
+          tag: 'Rebote Digital · UGC',
+          headline: '“Sube tu momento criollo con #PerusalseroDonBelisario.”',
+          subcopy:
+            'Fotos en el stand y en mesa participando por cenas gratis en Don Belisario y packs de Inca Kola anunciados en redes oficiales.',
+          format: 'Social Media + Concurso'
         }
       ]
     },
+    galleryImages: [
+      {
+        src: '/images/projects/belisario-poster.jpg',
+        title: 'Afiche principal de campaña',
+        caption: 'Pieza gráfica integrando el key visual "De Pecho Sabor Criollo" y el anuncio de Inca Kola en botella.'
+      },
+      {
+        src: '/images/projects/belisario-tabletents.jpg',
+        title: 'Aplicación POP: Table Tents',
+        caption: 'Comunicación directa en cada mesa antes de la apertura del local y durante el evento de Fiestas Patrias.'
+      },
+      {
+        src: '/images/projects/belisario-roller.jpg',
+        title: 'Señalización exterior: Roller Screen',
+        caption: 'Soporte visual en fachada de Don Belisario diseñado para captar tráfico peatonal y atraer nuevos comensales.'
+      },
+      {
+        src: '/images/projects/belisario-redes.jpg',
+        title: 'Difusión en redes y activación urbana',
+        caption: 'Mockup de publicación en Instagram promoviendo la activación del 28 de julio junto a vehículos brandeados.'
+      }
+    ],
+    metrics: [
+      {
+        value: '3',
+        label: 'Sedes Estratégicas',
+        detail: 'Miraflores (Av. Benavides), C.C. Plaza Norte y Real Plaza Salaverry.'
+      },
+      {
+        value: '5×5 m',
+        label: 'Stand BTL Interactivo',
+        detail: 'Estación "Peruanos Salseros" con chef en vivo, condimentos y premiación.'
+      },
+      {
+        value: '17 días',
+        label: 'Vigencia de Campaña',
+        detail: 'Despliegue continuo del 15 al 31 de julio con evento central el 28 de julio.'
+      },
+      {
+        value: '360°',
+        label: 'Cobertura Integral',
+        detail: 'Fidelización externa, motivación a mozos, trade POP y amplificación digital.'
+      }
+    ],
     galleryCaption:
-      'Aplicación de serie de pósters urbanos y punto de venta con identidad cobalto y marfil pensada para destacar en el paisaje de la ciudad.'
+      'Diseño tridimensional del stand BTL 5×5m "Peruanos Salseros" para la activación de co-branding Don Belisario × Inca Kola.'
+  },
+  {
+    id: 'dog-chow-extra-life',
+    index: '04',
+    slug: 'purina-dog-chow-extra-life-campana-360',
+    title: 'Purina Dog Chow',
+    subtitle: 'Campaña publicitaria 360° “Extra Life: Para momentos que duran más”',
+    client: 'Purina Dog Chow · Fundamentos y Casuística Publicitaria (ISIL)',
+    category: 'Campaña 360°',
+    year: '2024 — 2025',
+    duration: 'Campaña Integral 360° · Parcial Académico',
+    role: 'Estrategia Creativa, Storyboard, BTL & Promociones',
+    deliverables: [
+      'Storyboard Audiovisual "Historias de Vida" (4 Escenas)',
+      'Acciones Retail & Programa "Dog Chow Premium Club"',
+      'Evento BTL "Gourmet Experience" (YOY Lima Box Park)',
+      'Promoción & Carrera "Run Funny Dog Chow" con Wong'
+    ],
+    accentColor: '#13823D',
+    accentSoft: 'rgba(19, 130, 61, 0.10)',
+    heroImage: '/images/projects/dogchow-hero.jpg',
+    secondaryImage: '/images/projects/dogchow-secondary.jpg',
+    shortSummary:
+      'Propuesta publicitaria 360° que traduce el beneficio racional de Extra Life (+1.8 años de vida saludable) en una narrativa emotiva, acciones de fidelización en punto de venta y dos grandes eventos pet-friendly en Lima.',
+    brief:
+      'Purina Dog Chow buscaba posicionar su propuesta de valor "Extra Life" —brindar hasta 1.8 años más de vida con calidad a las mascotas— sin quedarse en un discurso puramente técnico. El reto fue diseñar una campaña publicitaria 360° que fortaleciera el vínculo emocional entre dueños y perros, impulsando al mismo tiempo la rotación en canal tradicional/granel y supermercados.',
+    insight:
+      'Quien tiene un perro no cuenta los años en números: los cuenta en paseos por la playa, tardes de parque y travesuras compartidas. Darle más tiempo de vida significa regalarle más recuerdos juntos.',
+    bigIdeaTitle: '“Para momentos que duran más”',
+    bigIdeaCopy:
+      'Convertimos el atributo nutricional de Extra Life en historias contadas desde la voz de los propios perros. La campaña se despliega en un ecosistema completo: comercial narrativo en 4 escenas, exhibición y club de puntos para venta a granel, un restaurante gourmet temático para mascotas en YOY Lima Box Park y una carrera familiar junto a Wong Camacho.',
+    pillars: [
+      {
+        number: '01',
+        title: 'Storyboard audiovisual "Historias de Vida"',
+        description:
+          'Cuatro escenas emotivas y con humor narradas en primera persona por distintas razas (Labrador, Bulldog, Caniche y Pastor Alemán) recordando sus momentos favoritos junto a sus dueños.'
+      },
+      {
+        number: '02',
+        title: 'Trade marketing & "Dog Chow Premium Club"',
+        description:
+          'Exhibiciones de alto impacto ("Torre del Producto" con iluminación LED en pasillos principales) combinadas con un programa de recompensas por kilos comprados (1 kg = 10 pts, niveles Plata y Oro canjeables por descuentos y accesorios).'
+      },
+      {
+        number: '03',
+        title: 'Experiencias BTL & alianza con Wong',
+        description:
+          'Dos grandes activaciones presenciales con amplificación digital: "Gourmet Experience" en YOY Lima Box Park con chef de nutrición canina (#DogGourmetExperience) y la carrera "Run Funny Dog Chow" en Wong Camacho (#RunFunnyDogChow).'
+      }
+    ],
+    campaignBoard: {
+      sectionLabel: 'Ecosistema de Campaña 360°',
+      sectionTitle: 'Del spot emocional al punto de venta y el parque',
+      description:
+        'Cuatro frentes conectados mediante códigos QR y hashtags para acompañar al dueño en cada etapa:',
+      items: [
+        {
+          tag: 'Audiovisual · Spot',
+          headline: '“Porque cada momento cuenta. Para momentos que duran más.”',
+          subcopy:
+            'Cuatro personalidades caninas narran sus recuerdos favoritos hasta revelar el beneficio de Extra Life.',
+          format: 'Storyboard 4 Escenas'
+        },
+        {
+          tag: 'BTL · YOY Lima Box Park',
+          headline: '“Un restaurante gourmet diseñado especialmente para perros.”',
+          subcopy:
+            'Mesas a escala, degustaciones preparadas por un chef en nutrición canina, kits de bienvenida y registro vía QR con #DogGourmetExperience.',
+          format: 'Gourmet Experience'
+        },
+        {
+          tag: 'Promo Retail · Wong Camacho',
+          headline: '“En julio premiamos sus habilidades en Run Funny Dog Chow.”',
+          subcopy:
+            'Inscripción con QR en redes y empaques, carrera familiar en estacionamiento de Wong La Molina, polos de participantes y 3 premios principales.',
+          format: 'Promoción + Carrera BTL'
+        }
+      ]
+    },
+    galleryImages: [
+      {
+        src: '/images/projects/dogchow-storyboard.jpg',
+        title: 'Storyboard completo: "Historias de Vida"',
+        caption: 'Secuencia de 4 escenas protagonizadas por un Labrador, Bulldog Inglés, Caniche y Pastor Alemán.'
+      },
+      {
+        src: '/images/projects/dogchow-gourmet-qr.jpg',
+        title: 'Convocatoria digital Gourmet Experience',
+        caption: 'Pieza con código QR de registro para el evento familiar en YOY Lima Box Park.'
+      },
+      {
+        src: '/images/projects/dogchow-wong-promo.jpg',
+        title: 'Afiche promocional Dog Chow × Wong',
+        caption: 'Gráfica de campaña #RunFunnyDogChow invitando a participar por premios en Wong Camacho.'
+      },
+      {
+        src: '/images/projects/dogchow-premios.jpg',
+        title: 'Sistema de premios y merchandising',
+        caption: 'Premiación para los 3 primeros lugares: correas, mochila, tomatodo aromatizador, platos y juguetes Dog Chow.'
+      }
+    ],
+    metrics: [
+      {
+        value: '4',
+        label: 'Frentes Integrados',
+        detail: 'Audiovisual (Storyboard), Trade/Granel, Evento BTL Gourmet y Promo con Wong.'
+      },
+      {
+        value: '2',
+        label: 'Sedes Presenciales',
+        detail: 'YOY Lima Box Park (Gourmet Experience) y Wong Camacho, La Molina (Run Funny).'
+      },
+      {
+        value: '2 Niveles',
+        label: 'Club de Fidelización',
+        detail: 'Dog Chow Premium Club (Plata 501–1000 pts y Oro 1001+ pts) para impulsar recompra.'
+      },
+      {
+        value: 'QR + UGC',
+        label: 'Puente Phygital',
+        detail: 'Registro mediante códigos QR en empaques y amplificación con 2 hashtags de campaña.'
+      }
+    ],
+    galleryCaption:
+      'Propuesta de ambientación temática para el evento "Dog Chow Gourmet Experience" en YOY Lima Box Park.'
+  },
+  {
+    id: 'yanbal-total-block',
+    index: '05',
+    slug: 'yanbal-total-block-verano-shield',
+    title: 'Yanbal Total Block',
+    subtitle: 'Propuesta de activación BTL en playas “Verano Shield” para protección solar SPF 100',
+    client: 'Yanbal — Línea Total Block (Agencia Graphs · ISIL)',
+    category: 'Activación BTL',
+    year: '2025',
+    duration: 'Campaña de Temporada de Verano · BTL Playas',
+    role: 'Conceptualización BTL, Estrategia & Desarrollo Web (Agencia Graphs)',
+    deliverables: [
+      'Propuesta Integral de Activación en Playa Agua Dulce',
+      'Concepto "Verano Shield" & Propósito Ambiental',
+      'Dinámica Gamificada: Mini Golf Putting Greens',
+      'Visuales OOH en Playa & Sistema de Premios'
+    ],
+    accentColor: '#DF6C32',
+    accentSoft: 'rgba(223, 108, 50, 0.11)',
+    heroImage: '/images/projects/yanbal-hero.jpg',
+    secondaryImage: '/images/projects/yanbal-secondary.jpg',
+    shortSummary:
+      'Activación de verano en Playa Agua Dulce que une concientización frente a los rayos UV, entretenimiento familiar mediante mini golf en la arena y un gesto real de cuidado ambiental.',
+    brief:
+      'En el Perú, la cercanía a la línea ecuatorial eleva drásticamente el riesgo de radiación UV durante el verano; sin embargo, mientras el público femenino lidera el cuidado dérmico (80%), gran parte del público masculino (20%) aún subestima el uso diario de bloqueador. El objetivo fue diseñar una activación BTL para Yanbal Total Block SPF 100 capaz de educar, conectar emocionalmente e incentivar la compra en temporada alta.',
+    insight:
+      'En la playa nadie quiere una charla médica sobre radiación solar, pero las familias y jóvenes sí se acercan cuando la marca ofrece un juego divertido y demuestra que también cuida el espacio que están disfrutando.',
+    bigIdeaTitle: '“Cuida de tu playa, como cuidas de tu piel”',
+    bigIdeaCopy:
+      'Bajo el paraguas "Verano Shield" y el mensaje de concientización #luchacontraelcancer, diseñamos una intervención en Playa Agua Dulce —con más de 20,000 visitantes diarios en verano— que combina impacto ambiental positivo (instalación de tachos de basura brandeados en puntos críticos) con un circuito de mini golf "Putting Greens" con obstáculos y premios de la línea Total Block.',
+    pillars: [
+      {
+        number: '01',
+        title: 'Concientización UV & propósito ambiental',
+        description:
+          'Paneles de alto impacto en playa bajo el mensaje "Cuida de tu playa, como cuidas de tu piel" acompañados de la instalación de tachos ecológicos Yanbal en zonas de alta afluencia en Agua Dulce.'
+      },
+      {
+        number: '02',
+        title: 'Mini Golf "Verano Shield" en la arena',
+        description:
+          'Circuito compacto de putting greens con pequeños obstáculos diseñado para atraer a mujeres, hombres y familias (NSE A y B, 20–65 años) sin requerir un campo extenso.'
+      },
+      {
+        number: '03',
+        title: 'Dinámica contrarreloj & sampling de producto',
+        description:
+          'Los participantes compiten por embocar en el menor tiempo y número de golpes para ganar kits Total Block SPF 100, sillones inflables brandeados Yanbal y toallas playeras.'
+      }
+    ],
+    campaignBoard: {
+      sectionLabel: 'Arquitectura de Activación en Playa',
+      sectionTitle: 'Propósito, entretenimiento y prueba de producto bajo el sol',
+      description:
+        'Tres momentos diseñados para transformar una tarde en Playa Agua Dulce en recordación positiva de marca:',
+      items: [
+        {
+          tag: 'OOH & Propósito',
+          headline: '“Cuida de tu playa, como cuidas de tu piel.”',
+          subcopy:
+            'Paneles playeros junto a tachos de basura instalados por Yanbal en zonas sin cobertura de limpieza, reforzando el compromiso #luchacontraelcancer.',
+          format: 'Intervención Ambiental'
+        },
+        {
+          tag: 'Entretenimiento BTL',
+          headline: '“Golf Verano Shield: emboca en menos golpes y gana.”',
+          subcopy:
+            'Putting greens modulares con obstáculos aptos para todas las edades, logrando integrar al público masculino y familiar.',
+          format: 'Dinámica Interactiva'
+        },
+        {
+          tag: 'Premios & Trial',
+          headline: '“Protección SPF 100 resistente al agua y al sudor en tus manos.”',
+          subcopy:
+            'Entrega de productos Total Block Jumbo SPF 100, puffs inflables playeros Yanbal y toallas de verano que extienden la visibilidad por toda la costa.',
+          format: 'Sampling & Merch'
+        }
+      ]
+    },
+    galleryImages: [
+      {
+        src: '/images/projects/yanbal-linea.jpg',
+        title: 'Producto foco: Total Block Jumbo SPF 100',
+        caption: 'Presentación de beneficios clave: alta protección UV, hidratación y resistencia al agua y al sudor.'
+      },
+      {
+        src: '/images/projects/yanbal-golf.jpg',
+        title: 'Concepto de atracción: Golf "Verano Shield"',
+        caption: 'Diseño del mini campo de golf con putting greens pensado para atraer público familiar en playa.'
+      },
+      {
+        src: '/images/projects/yanbal-premios.jpg',
+        title: 'Sistema de premios de temporada',
+        caption: 'Línea Total Block SPF 100, puff inflable brandeado Yanbal y toallas playeras de alto impacto visual.'
+      },
+      {
+        src: '/images/projects/yanbal-secondary.jpg',
+        title: 'Mockup de intervención en Playa Agua Dulce',
+        caption: 'Visualización del panel "Cuida de tu playa, como cuidas de tu piel", banderola y tacho ecológico.'
+      }
+    ],
+    metrics: [
+      {
+        value: '20K+',
+        label: 'Visitantes Diarios',
+        detail: 'Afluencia estimada en Playa Agua Dulce durante temporada alta de verano.'
+      },
+      {
+        value: 'SPF 100',
+        label: 'Producto Héroe',
+        detail: 'Foco en Total Block Jumbo resistente al agua y sudor para climas ecuatoriales.'
+      },
+      {
+        value: '80 / 20',
+        label: 'Brecha de Insight',
+        detail: 'Oportunidad para fidelizar público femenino (80%) e incorporar al masculino (20%).'
+      },
+      {
+        value: '3',
+        label: 'Categorías de Premio',
+        detail: 'Kits Total Block, sillones inflables Yanbal y toallas playeras para visibilidad orgánica.'
+      }
+    ],
+    galleryCaption:
+      'Mockup de intervención urbana en Playa Agua Dulce: panel de concientización solar, banderola Yanbal y módulo de tachos ecológicos.'
+  },
+  {
+    id: 'punto-laptop',
+    index: '06',
+    slug: 'punto-laptop-desarrollo-web',
+    title: 'Punto Laptop',
+    subtitle: 'Diseño de presencia web y arquitectura de contenidos para servicios tecnológicos',
+    client: 'Punto Laptop · Proyecto de Medios Digitales (ISIL)',
+    category: 'Web & Digital',
+    year: '2025',
+    duration: 'Proyecto de Medios Digitales · Desarrollo en Wix',
+    role: 'Arquitectura Web & Contenidos (Secciones Nosotros & Pie de Página)',
+    deliverables: [
+      'Sitio Web Publicado en Wix',
+      'Arquitectura de Secciones & Navegación',
+      'Desarrollo de Sección "Nosotros" y "Pie de Página"',
+      'Integración de Sliders, Servicios, Testimonios y FAQ'
+    ],
+    accentColor: '#7A2CB5',
+    accentSoft: 'rgba(122, 44, 181, 0.10)',
+    heroImage: '/images/projects/puntolaptop-hero.jpg',
+    secondaryImage: '/images/projects/puntolaptop-secondary.jpg',
+    shortSummary:
+      'Creación de una plataforma web orientada a conversión y confianza para una marca especializada en soluciones y soporte de laptops y computadoras, desarrollada en Wix.',
+    brief:
+      'Los negocios de soporte técnico y servicios para laptops suelen depender únicamente de mensajes informales en redes, lo que dificulta transmitir respaldo y claridad sobre sus servicios. El reto fue estructurar y publicar una página web funcional en Wix que ordenara la propuesta de valor de Punto Laptop y facilitara el contacto rápido con potenciales clientes.',
+    insight:
+      'Cuando una laptop falla en medio del trabajo o la universidad, el usuario no busca tecnicismos complicados: necesita entender en segundos qué servicios existen, comprobar que la marca es confiable y encontrar cómo contactarla al instante.',
+    bigIdeaTitle: '“Tu punto de tecnología cuando más lo necesitas”',
+    bigIdeaCopy:
+      'Construimos una arquitectura web clara y modular orientada a resolver dudas rápido y generar confianza desde el primer scroll: sliders de alto impacto, catálogo de servicios, prueba social con testimonios, sección institucional "Nosotros", preguntas frecuentes y un pie de página estructurado para navegación y contacto directo.',
+    pillars: [
+      {
+        number: '01',
+        title: 'Identidad clara y propuesta directa',
+        description:
+          'Construcción de la sección "Nosotros" con narrativa cercana para humanizar la marca tecnológica y reforzar el respaldo profesional detrás del servicio.'
+      },
+      {
+        number: '02',
+        title: 'Arquitectura orientada a resolver dudas',
+        description:
+          'Organización en 5 sliders destacados, bloque de servicios especializados, testimonios de clientes y módulo de preguntas frecuentes (FAQ) para acelerar la decisión de contacto.'
+      },
+      {
+        number: '03',
+        title: 'Navegación limpia y cierre funcional',
+        description:
+          'Diseño de pie de página estructurado con accesos rápidos y página de contacto optimizada para convertir visitas en consultas reales desde escritorio y móvil.'
+      }
+    ],
+    campaignBoard: {
+      sectionLabel: 'Estructura del Sitio Web en Wix',
+      sectionTitle: 'Módulos clave pensados para informar y convertir',
+      description:
+        'Distribución colaborativa del sitio web diseñada para acompañar el recorrido completo del usuario:',
+      items: [
+        {
+          tag: 'Identidad · Mi Aporte',
+          headline: '“Nosotros & Pie de Página: confianza y claridad en cada cierre.”',
+          subcopy:
+            'Redacción y maquetación de la historia de marca y footer estructurado con enlaces de navegación y datos clave.',
+          format: 'Secciones Core Wix'
+        },
+        {
+          tag: 'Oferta & Prueba Social',
+          headline: '“5 sliders visuales, catálogo de servicios y testimonios reales.”',
+          subcopy:
+            'Presentación escaneable de soluciones para laptops y computadoras respaldada por experiencias de clientes.',
+          format: 'Home & Servicios'
+        },
+        {
+          tag: 'Soporte & Conversión',
+          headline: '“Preguntas frecuentes y contacto directo sin fricción.”',
+          subcopy:
+            'Resolución anticipada de dudas habituales y formulario de contacto publicado en vivo en Wix.',
+          format: 'FAQ + Contacto Live'
+        }
+      ]
+    },
+    metrics: [
+      {
+        value: '7',
+        label: 'Secciones Integradas',
+        detail: '5 Sliders, Servicios, Testimonios, Nosotros, Preguntas Frecuentes, Contacto y Footer.'
+      },
+      {
+        value: 'Live',
+        label: 'Publicado en Wix',
+        detail: 'Sitio web operativo accesible en línea como parte de la estrategia de medios digitales.'
+      },
+      {
+        value: '4',
+        label: 'Integrantes del Equipo',
+        detail: 'Trabajo colaborativo con división clara de módulos y entregables digitales.'
+      },
+      {
+        value: 'UX',
+        label: 'Enfoque en Claridad',
+        detail: 'Jerarquía visual pensada para reducir fricción entre la necesidad técnica y el contacto.'
+      }
+    ],
+    externalLinks: [
+      {
+        label: 'Visitar sitio web Punto Laptop (Wix)',
+        url: 'https://huamanmonterox.wixsite.com/puntolaptop/contactanos',
+        platform: 'web'
+      }
+    ],
+    galleryCaption:
+      'Distribución de módulos y arquitectura del sitio web Punto Laptop desarrollado colaborativamente en Wix.'
   }
 ];

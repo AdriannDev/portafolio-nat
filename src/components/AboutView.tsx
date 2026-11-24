@@ -11,7 +11,7 @@ import {
   MapPin,
   Wrench
 } from 'lucide-react';
-import { PROFILE } from '../data/portfolio';
+import { PROFILE, PROJECTS } from '../data/portfolio';
 
 interface AboutViewProps {
   onNavigateWork: () => void;
@@ -349,7 +349,7 @@ export function AboutView({ onNavigateWork }: AboutViewProps) {
                 onClick={onNavigateWork}
                 className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#141414] underline underline-offset-4 hover:opacity-70 cursor-pointer"
               >
-                Ver los 4 proyectos seleccionados
+                Ver los {PROJECTS.length} proyectos seleccionados
                 <ArrowUpRight className="h-4 w-4" />
               </button>
             </div>

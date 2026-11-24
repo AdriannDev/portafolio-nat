@@ -13,8 +13,10 @@ interface IndexViewProps {
 const CATEGORIES: ('Todos' | ProjectCategory)[] = [
   'Todos',
   'Social Media',
+  'Activación BTL',
   'Branding & Campaña',
-  'Campaña 360°'
+  'Campaña 360°',
+  'Web & Digital'
 ];
 
 export function IndexView({

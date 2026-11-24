@@ -5,7 +5,10 @@ import {
   ArrowLeft,
   ArrowUpRight,
   Bookmark,
+  Film,
+  Globe,
   Heart,
+  Images,
   Instagram,
   Play,
   Sparkles
@@ -116,6 +119,31 @@ export function CaseStudyView({
           <p className="mt-4 max-w-3xl font-serif italic text-2xl sm:text-3xl leading-[1.25] text-[#4E4A44]">
             {project.subtitle}
           </p>
+
+          {/* Optional direct live links (Instagram, TikTok, Live Web) */}
+          {project.externalLinks && project.externalLinks.length > 0 && (
+            <div className="mt-6 flex flex-wrap items-center gap-2.5">
+              {project.externalLinks.map((link) => (
+                <a
+                  key={link.url}
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#141414]/15 bg-[#ECE9E1]/65 px-4 py-2 text-xs font-medium text-[#141414] transition-all hover:border-[#141414]/40 hover:bg-[#141414] hover:text-[#F5F3EE]"
+                >
+                  {link.platform === 'instagram' ? (
+                    <Instagram className="h-3.5 w-3.5" />
+                  ) : link.platform === 'tiktok' ? (
+                    <Play className="h-3.5 w-3.5 fill-current" />
+                  ) : (
+                    <Globe className="h-3.5 w-3.5" />
+                  )}
+                  <span>{link.label}</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              ))}
+            </div>
+          )}
         </header>
 
         {/* Hero Full-Bleed Frame */}
@@ -128,7 +156,7 @@ export function CaseStudyView({
           <img
             src={project.heroImage}
             alt={project.title}
-            className="w-full aspect-[16/9] sm:aspect-[16/9.5] object-cover"
+            className="w-full aspect-[16/9] object-cover"
           />
         </motion.div>
 
@@ -148,7 +176,7 @@ export function CaseStudyView({
           </div>
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#6B6760]">
-              Duración
+              Contexto / Duración
             </p>
             <p className="mt-2 text-sm font-medium text-[#141414]">{project.duration}</p>
           </div>
@@ -269,18 +297,75 @@ export function CaseStudyView({
           </figcaption>
         </figure>
 
-        {/* Specialized Interactive Content Section: Social Media Mockups (for KOVA) */}
+        {/* Real Vertical Video Reels Showcase (for Social Media video projects like Kushi Illari) */}
+        {project.videoReels && project.videoReels.length > 0 && (
+          <section className="mt-20 sm:mt-24">
+            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#6B6760]">
+              <Film className="h-3.5 w-3.5" style={{ color: project.accentColor }} />
+              <span>Piezas Audiovisuales Reales · Reels &amp; TikTok</span>
+            </div>
+            <h2 className="mt-2 text-2xl sm:text-4xl font-medium tracking-[-0.025em] text-[#141414]">
+              Videos producidos para la marca
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm sm:text-base text-[#5C5852]">
+              Reproduce las piezas originales creadas para Instagram Reels y TikTok: dirección
+              creativa, grabación en tienda, edición dinámica y storytelling de producto.
+            </p>
+
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+              {project.videoReels.map((reel) => (
+                <div
+                  key={reel.title}
+                  className="flex flex-col rounded-[26px] border border-[#141414]/12 bg-[#ECE9E1]/55 p-5 sm:p-6"
+                >
+                  <div className="flex items-center justify-between gap-2 pb-4">
+                    <span
+                      className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[10px] font-medium uppercase tracking-wider text-[#F5F3EE]"
+                      style={{ backgroundColor: project.accentColor }}
+                    >
+                      <Play className="h-3 w-3 fill-current" />
+                      {reel.tag}
+                    </span>
+                    <span className="font-mono text-[11px] text-[#6B6760]">{reel.format}</span>
+                  </div>
+
+                  <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-[22px] border border-[#141414]/15 bg-[#141414] shadow-[0_18px_50px_-24px_rgba(20,20,20,0.45)]">
+                    <video
+                      src={reel.src}
+                      poster={reel.poster}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="aspect-[9/16] w-full object-cover"
+                    />
+                  </div>
+
+                  <div className="mt-5">
+                    <h3 className="text-lg font-medium tracking-[-0.015em] text-[#141414]">
+                      {reel.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[#5C5852]">
+                      {reel.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Specialized Interactive Content Section: Social Media Mockups */}
         {project.socialShowcase && (
           <section className="mt-20 sm:mt-24">
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#6B6760]">
-              04 · Parrilla de Contenido &amp; Piezas Clave
+              04 · Parrilla de Contenido &amp; Formatos Clave
             </p>
             <h2 className="mt-2 text-2xl sm:text-4xl font-medium tracking-[-0.025em] text-[#141414]">
               Formatos nativos de TikTok e Instagram
             </h2>
             <p className="mt-3 max-w-2xl text-sm sm:text-base text-[#5C5852]">
-              Desglose de tres piezas representativas gestionadas durante el trimestre: guion de
-              apertura (hook), intención estratégica y respuesta de comunidad.
+              Desglose de pilares de contenido gestionados para la cuenta: gancho inicial (hook),
+              intención comercial y conexión orgánica con la audiencia.
             </p>
 
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -388,10 +473,45 @@ export function CaseStudyView({
           </section>
         )}
 
+        {/* Multi-Piece Visual Gallery from Project Deck */}
+        {project.galleryImages && project.galleryImages.length > 0 && (
+          <section className="mt-20 sm:mt-24">
+            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#6B6760]">
+              <Images className="h-3.5 w-3.5" style={{ color: project.accentColor }} />
+              <span>Piezas &amp; Aplicaciones del Proyecto</span>
+            </div>
+            <h2 className="mt-2 text-2xl sm:text-4xl font-medium tracking-[-0.025em] text-[#141414]">
+              Desarrollo visual y bajadas creativas
+            </h2>
+
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+              {project.galleryImages.map((item) => (
+                <figure
+                  key={item.src}
+                  className="group overflow-hidden rounded-[22px] border border-[#141414]/10 bg-[#ECE9E1]/50"
+                >
+                  <div className="overflow-hidden border-b border-[#141414]/8 bg-[#ECE9E1]">
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      loading="lazy"
+                      className="w-full aspect-[16/9] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <figcaption className="p-4 sm:p-5">
+                    <p className="text-sm font-medium text-[#141414]">{item.title}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-[#5C5852]">{item.caption}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Section 5: Resultados e Impacto */}
         <section className="mt-20 sm:mt-24 border-t border-[#141414]/12 pt-14">
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#6B6760]">
-            05 · Resultados &amp; Impacto
+            05 · Alcance &amp; Claves del Proyecto
           </p>
           <h2 className="mt-2 text-2xl sm:text-4xl font-medium tracking-[-0.025em] text-[#141414]">
             Indicadores clave del proyecto
